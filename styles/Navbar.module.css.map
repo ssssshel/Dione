@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,OAAO,CAAA;EACL,KAAK,EAAE,IAAI;EACX,MAAM,ECkBK,IAAiB;EDjB5B,QAAQ,EAAE,KAAK;CAChB",
+    "sources": [
+        "Navbar.module.scss",
+        "Breakpoints.scss"
+    ],
+    "names": [],
+    "file": "Navbar.module.css"
+}

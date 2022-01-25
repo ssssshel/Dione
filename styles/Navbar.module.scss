@@ -1,0 +1,7 @@
+@import "./Breakpoints.scss";
+
+.navbar{
+  width: 100%;
+  height: toRem(80);
+  position: fixed;
+}
