@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 // import navbar from "../styles/Navbar.module.css"
-import fonts from "../styles/Fonts.module.css";
 import menus from "../public/img/menus.png";
 import close from "../public/img/xwhite.png";
 
@@ -42,7 +41,7 @@ const Navbar = () => {
     <div>
       <div
         id="navbar"
-        className="fixed z-10 w-full h-20 px-5 rounded-b-3xl backdrop-blur-md lg:hidden xl:hidden 2xl:hidden bg-purple/30 "
+        className="fixed z-10 w-full h-20 px-5 rounded-b-xl backdrop-blur-md lg:hidden xl:hidden 2xl:hidden bg-purple/30 "
       >
         <div className="flex items-center content-center justify-between mt-5">
           <div className="">
