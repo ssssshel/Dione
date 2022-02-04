@@ -1,5 +1,5 @@
 import Item from "../../../models/Item";
-import connectDb from "../../../lib/connectDB";
+import connectDb from "../../../lib/connectDb";
 
 export default async function handler(req, res){
   await connectDb()
