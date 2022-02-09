@@ -55,7 +55,7 @@ export default function Home() {
               id=""
               className='flex shadow-lg shadow-xiketic flex-col xl:col-span-1 xl:row-span-2 xl:h-full 2xl:col-span-1 2xl:row-span-2 2xl:h-full justify-end xl:rounded-none 2xl:rounded-none w-full h-45% bg-cover bg-no-repeat bg-center rounded-3xl bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814746/Dione/Planetas/sunArt2_fiiufs.jpg")] '
             >
-              <Link href="/">
+              <Link href="/sistema/otros-cuerpos/sol">
                 <a>
                   <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-20 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-3xl bg-rhythm/30 backdrop-blur-md text-lavander">
                     El sol
@@ -65,7 +65,7 @@ export default function Home() {
             </div>
 
             <div className='flex flex-col  xl:rounded-none 2xl:rounded-none justify-end w-full h-45% bg-cover bg-no-repeat bg-center shadow-lg shadow-xiketic rounded-3xl bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814745/Dione/Planetas/venus_ln7qrr.jpg")]'>
-              <Link href="/">
+              <Link href="/sistema/planetas">
                 <a>
                   <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-3xl bg-rhythm/30 backdrop-blur-md text-lavander">
                     Planetas
@@ -75,7 +75,7 @@ export default function Home() {
             </div>
 
             <div className='flex xl:col-start-2 xl:rounded-none 2xl:rounded-none 2xl:col-start-2 flex-col justify-end w-full h-45% shadow-lg shadow-xiketic bg-cover bg-no-repeat bg-center rounded-3xl bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814747/Dione/Planetas/pluton_xfkum8.jpg")]'>
-              <Link href="/">
+              <Link href="/sistema/planetas-enanos">
                 <a>
                   <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-3xl bg-rhythm/30 backdrop-blur-md text-lavander">
                     Planetas Enanos
@@ -85,7 +85,7 @@ export default function Home() {
             </div>
 
             <div className='flex xl:row-span-2 shadow-lg shadow-xiketic xl:rounded-none 2xl:rounded-none xl:col-span-2 xl:row-start-1 xl:col-start-3 xl:h-full 2xl:row-span-2 2xl:col-span-2 2xl:row-start-1 2xl:col-start-3 2xl:h-full flex-col justify-end w-full h-45% bg-cover bg-no-repeat bg-center rounded-3xl bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814746/Dione/Satelites/jupiter/Ganymede_wxerql.png")]'>
-              <Link href="/">
+              <Link href="/sistema/satelites">
                 <a>
                   <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-3xl bg-rhythm/30 backdrop-blur-md text-lavander">
                     Satélites
@@ -95,7 +95,7 @@ export default function Home() {
             </div>
 
             <div className='flex flex-col xl:rounded-none shadow-lg shadow-xiketic 2xl:rounded-none justify-end w-full h-45% bg-cover bg-no-repeat bg-center rounded-3xl bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814745/Dione/Asteroids/ida_rpbgsf.jpg")]'>
-              <Link href="/">
+              <Link href="/sistema/asteroides">
                 <a>
                   <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-3xl bg-rhythm/30 backdrop-blur-md text-lavander">
                     Asteroides
@@ -105,7 +105,7 @@ export default function Home() {
             </div>
 
             <div className='flex xl:col-span-3 xl:rounded-none shadow-lg shadow-xiketic 2xl:rounded-none 2xl:col-span-3 flex-col justify-end w-full h-45% bg-cover bg-no-repeat bg-center rounded-3xl bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642957472/Dione/cometa_itvyn4.jpg")]'>
-              <Link href="/">
+              <Link href="/sistema/otros-cuerpos">
                 <a>
                   <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-3xl bg-rhythm/30 backdrop-blur-md text-lavander">
                     Y más...

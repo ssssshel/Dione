@@ -102,7 +102,9 @@ const Navbar = () => {
                 id="system"
                 onMouseOver={dropDown}
               >
-                Sistema
+                <Link href="/sistema">
+                  <a>Sistema</a>
+                </Link>
               </li>
               <li className="flex flex-col justify-center w-24 ">
                 <Link href="/">
@@ -131,7 +133,9 @@ const Navbar = () => {
             </li>
 
             <li>
-              Planetas
+              <Link href="/sistema/planetas">
+                <a>Planetas</a>
+              </Link>
               <ul className="mt-5 font-light">
                 <li className="hover:text-rhythm">
                   <Link href="">
@@ -176,7 +180,9 @@ const Navbar = () => {
               </ul>
             </li>
             <li>
-              Planetas Enanos
+              <Link href="/sistema/planetas-enanos">
+                <a>Planetas Enanos</a>
+              </Link>
               <ul className="mt-5 font-light">
                 <li className="hover:text-rhythm">
                   <Link href="">
@@ -276,7 +282,9 @@ const Navbar = () => {
               </ul>
             </li>
             <li>
-              Otros cuerpos
+              <Link href="/sistema/otros-cuerpos">
+                <a>Otros cuerpos</a>
+              </Link>
               <ul className="mt-5 font-light">
                 <li className="hover:text-rhythm">
                   <Link href="">
