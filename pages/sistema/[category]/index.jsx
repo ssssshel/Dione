@@ -38,6 +38,7 @@ export default function Category({ items }) {
       break;
   }
 
+  // SE FILTRA EL ARRAY BASE COMPARANDO LA CATEGORIA DE CADA ITEM CON LA QUE SE MUESTERA EN EL SWITCH DE BUSQUEDA
   const filCategory = items.filter((item) => {
     return item.category == cat;
   });
