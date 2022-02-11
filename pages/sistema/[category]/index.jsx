@@ -21,25 +21,28 @@ export default function Category({ items }) {
   switch (category) {
     case "planetas":
       cat = "Planetas";
-      console.log("Planetas");
       break;
 
     case "planetas-enanos":
       cat = "Planetas Enanos";
-      console.log("Planetas Enanos");
       break;
 
     case "otros-cuerpos":
       cat = "Otros Cuerpos";
-      console.log("Otros cuerpos");
       break;
 
     default:
-      cat = "null";
-      foundPage = false;
-      console.log("null");
+      // cat = "null";
+      // foundPage = false;
+      // console.log("null");
       break;
   }
+
+  const filCategory = items.filter((item) => {
+    return item.category == cat;
+  });
+
+  console.log(filCategory);
 
   {
     if (!foundPage) {
@@ -66,7 +69,7 @@ export default function Category({ items }) {
             </div>
 
             <div className="grid sm:grid-cols-1 md:grid-cols-1 gap-8 grid-cols-3 pt-20 grid-flow-row sm:gap-10 md:gap-10">
-              {items.map(({ _id, name, category }) => (
+              {filCategory.map(({ _id, name, category }) => (
                 <div
                   key={_id}
                   className='flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col justify-end w-full sm:h-30% md:h-40% h-70% bg-cover bg-no-repeat bg-center rounded-2xl bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642957472/Dione/cometa_itvyn4.jpg")]'

@@ -82,11 +82,11 @@ const Form = ({ formData, formNewItem }) => {
           id=""
         >
           <option value="">Seleccione una categoría</option>
-          <option value="Planeta">Planeta</option>
-          <option value="Planeta enano">Planeta Enano</option>
-          <option value="Asteoride">Asteroide</option>
-          <option value="Cometa">Cometa</option>
-          <option value="Otro objeto">Otro objeto</option>
+          <option value="Planetas">Planetas</option>
+          <option value="Planetas Enanos">Planetas Enanos</option>
+          <option value="Asteorides">Asteroides</option>
+          <option value="Cometas">Cometas</option>
+          <option value="Otros Objetos">Otros Bbjetos</option>
         </select>
 
         <label>*Llenar unicamente en caso de que se trate de un satélite</label>
