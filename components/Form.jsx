@@ -1,14 +1,22 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 const Form = ({ formData, formNewItem }) => {
   const router = useRouter();
 
+  // const [categoryForm, setCategoryForm] = useState({
+  //   category: formData.category,
+  // });
+  // console.log(categoryForm);
+
+  // useEffect(() => {});
+
   const [form, setForm] = useState({
     name: formData.name,
-    category: formData.category,
     diameter: formData.diameter,
+    category: formData.category,
+
     mass: formData.mass,
     volume: formData.volume,
     density: formData.density,
@@ -24,6 +32,17 @@ const Form = ({ formData, formNewItem }) => {
     urlImg2: formData.urlImg2,
   });
 
+  console.log(form.category);
+
+  useEffect(() => {
+    if (form.category == "Planetas") {
+      console.log("1");
+    } else if (form.category == "Planetas Enanos") {
+      console.log("2");
+    }
+  });
+
+  // ACTUALIZA LOS CAMBIOS EN EL FORMULARIO CON LA INFORMACION QUE SE INGRESA EN LOS CAMPOS
   const handleChange = (e) => {
     const { value, name } = e.target;
     setForm({
@@ -36,6 +55,14 @@ const Form = ({ formData, formNewItem }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     postData(form);
+  };
+
+  const handleCategoryForm = (e) => {
+    const { category, value } = e.target;
+    setCategoryForm({
+      ...categoryForm,
+      [category]: value,
+    });
   };
 
   const postData = async (form) => {
@@ -86,10 +113,13 @@ const Form = ({ formData, formNewItem }) => {
           <option value="Planetas Enanos">Planetas Enanos</option>
           <option value="Asteorides">Asteroides</option>
           <option value="Cometas">Cometas</option>
-          <option value="Otros Objetos">Otros Bbjetos</option>
+          <option value="Otros Objetos">Otros Objetos</option>
         </select>
 
-        <label>*Llenar unicamente en caso de que se trate de un satélite</label>
+        <label>
+          *Llenar unicamente en caso de que se trate de un satélite u otro
+          objeto
+        </label>
         <input
           type="text"
           name="category"

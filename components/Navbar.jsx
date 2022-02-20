@@ -5,8 +5,28 @@ import menus from "../public/img/menus.png";
 import close from "../public/img/xwhite.png";
 
 import logoClaro from "../public/img/LogoClaro.svg";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
+  const [optionsTog, setOptionsTog] = useState("");
+
+  useEffect(() => {
+    const optionsSystem = document.getElementById("opSystem");
+    const options1 = document.getElementById("op1");
+    const options2 = document.getElementById("op2");
+    if (optionsTog == "opt1") {
+      optionsSystem.style.display = "block";
+      options1.style.display = "flex";
+      options2.style.display = "none";
+    } else if (optionsTog == "opt2") {
+      optionsSystem.style.display = "block";
+      options2.style.display = "flex";
+      options1.style.display = "none";
+    }
+  });
+
+  // MOBILE NAVBAR
+
   function openMenu() {
     const burger = document.getElementById("burgerBtn");
     const close = document.getElementById("closeBtn");
@@ -25,11 +45,6 @@ const Navbar = () => {
     close.style.display = "none";
     navbar.style.height = "5rem";
     options.style.display = "none";
-  }
-
-  function dropDown() {
-    const optionsSystem = document.getElementById("opSystem");
-    optionsSystem.style.display = "block";
   }
 
   function closeDropdown() {
@@ -75,7 +90,17 @@ const Navbar = () => {
             </li>
             <li className="w-full text-center rounded-lg hover:bg-lavander/20">
               <Link href="&">
-                <a className="text-lavander">Acerca de</a>
+                <a className="text-lavander">El proyecto</a>
+              </Link>
+            </li>
+            <li className="w-full text-center rounded-lg hover:bg-lavander/20">
+              <Link href="&">
+                <a className="text-lavander">Contacto</a>
+              </Link>
+            </li>
+            <li className="w-full text-center rounded-lg hover:bg-lavander/20">
+              <Link href="&">
+                <a className="text-lavander">Admin</a>
               </Link>
             </li>
           </ul>
@@ -100,11 +125,9 @@ const Navbar = () => {
               <li
                 className="text-lg cursor-pointer hover:text-bluebell text-lavander"
                 id="system"
-                onMouseOver={dropDown}
+                onMouseOver={() => setOptionsTog((optionsTog = "opt1"))}
               >
-                <Link href="/sistema">
-                  <a>Sistema</a>
-                </Link>
+                <a>Sistema</a>
               </li>
               <li className="flex flex-col justify-center w-24 ">
                 <Link href="/">
@@ -113,19 +136,23 @@ const Navbar = () => {
                   </a>
                 </Link>
               </li>
-              <li>
-                <Link href="/">
-                  <a className="text-lg hover:text-bluebell text-lavander">
-                    Acerca de
-                  </a>
-                </Link>
+              <li onMouseOver={() => setOptionsTog((optionsTog = "opt2"))}>
+                <a
+                  id="about"
+                  className="text-lg hover:text-bluebell text-lavander"
+                >
+                  Acerca de
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
         <div id="opSystem" className="relative hidden h-screen top-20">
-          <ul className="flex flex-row justify-between float-right w-full text-base font-semibold cursor-pointer text-lavander">
+          <ul
+            id="op1"
+            className="hidden flex-row justify-between float-right w-full text-base font-semibold cursor-pointer text-lavander"
+          >
             <li>
               <Link href="/sistema">
                 <a>Vista General</a>
@@ -302,6 +329,32 @@ const Navbar = () => {
                   </Link>
                 </li>
               </ul>
+            </li>
+            <li
+              className="text-3xl hover:text-bluebell"
+              onClick={closeDropdown}
+            >
+              x
+            </li>
+          </ul>
+          <ul
+            id="op2"
+            className=" hidden flex-row justify-between float-right w-full text-base font-semibold cursor-pointer text-lavander"
+          >
+            <li className="hover:text-rhythm">
+              <Link href="">
+                <a>El Proyecto</a>
+              </Link>
+            </li>
+            <li className="hover:text-rhythm">
+              <Link href="">
+                <a>Contacto</a>
+              </Link>
+            </li>
+            <li className="hover:text-rhythm">
+              <Link href="">
+                <a>Admin</a>
+              </Link>
             </li>
             <li
               className="text-3xl hover:text-bluebell"

@@ -9,14 +9,16 @@ import HeadLayout from "../../../components/Head";
 import Navbar from "../../../components/Navbar";
 
 export default function Category({ items }) {
-  console.log(items);
-
   const router = useRouter();
 
+  // OBTIENE LA RUTA DINAMICA A PARTIR DE LA URL Y SE CONVIERTE A STRNG PROCEDENTE DE UN OBJETO
   const { category } = router.query;
 
   let foundPage = true;
+  // CATEGORIA DINAMICA
   let cat = "";
+  // BACKGROUND DINAMICO
+  let bkg = "";
 
   switch (category) {
     case "planetas":
@@ -27,14 +29,22 @@ export default function Category({ items }) {
       cat = "Planetas Enanos";
       break;
 
-    case "otros-cuerpos":
-      cat = "Otros Cuerpos";
+    case "asteroides":
+      cat = "Asteroides";
+      break;
+
+    case "cometas":
+      cat = "Cometas";
+      break;
+
+    case "estrellas":
+      cat = "Estrellas";
       break;
 
     default:
-      // cat = "null";
-      // foundPage = false;
-      // console.log("null");
+      cat = "null";
+      foundPage = false;
+      console.log("null");
       break;
   }
 
@@ -70,12 +80,12 @@ export default function Category({ items }) {
             </div>
 
             <div className="grid sm:grid-cols-1 md:grid-cols-1 gap-8 grid-cols-3 pt-20 grid-flow-row sm:gap-10 md:gap-10">
-              {filCategory.map(({ _id, name, category }) => (
+              {filCategory.map(({ _id, name, category, urlImg }) => (
                 <div
                   key={_id}
-                  className='flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col justify-end w-full sm:h-30% md:h-40% h-70% bg-cover bg-no-repeat bg-center rounded-2xl bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642957472/Dione/cometa_itvyn4.jpg")]'
+                  className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col justify-end w-full sm:h-30% md:h-40% h-70% bg-cover bg-no-repeat bg-center rounded-2xl bg-[url("https://${urlImg}")]`}
                 >
-                  <Link href="/">
+                  <Link href={`/sistema/${category}/${name}`}>
                     <a>
                       <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
                         {name} - {category}
