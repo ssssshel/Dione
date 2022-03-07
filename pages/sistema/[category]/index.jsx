@@ -1,6 +1,13 @@
+// FALTA ADAPTAR LA IMAGEN PRINCIPAL Y EL TITULO DE LA CATEGORIA DE MANERA DINAMICA
+
 import Link from "next/link";
 
-import Item from "../../../models/Item";
+// import Item from "../../../models/Item";
+import Planeta from "../../../models/Planeta";
+import PlanetaEnano from "../../../models/PlanetaEnano";
+import Asteroide from "../../../models/Asteroide";
+import Cometa from "../../../models/Cometa";
+import Estrella from "../../../models/Estrella";
 import connectDb from "../../../lib/connectDb";
 import { useRouter } from "next/router";
 
@@ -8,17 +15,20 @@ import Footer from "../../../components/Footer";
 import HeadLayout from "../../../components/Head";
 import Navbar from "../../../components/Navbar";
 
-export default function Category({ items }) {
+export default function Category({ success, error, items }) {
   const router = useRouter();
+
+  console.log(`success: ${success}`);
+  console.log(`error: ${error}`);
 
   // OBTIENE LA RUTA DINAMICA A PARTIR DE LA URL Y SE CONVIERTE A STRNG PROCEDENTE DE UN OBJETO
   const { category } = router.query;
 
-  let foundPage = true;
   // CATEGORIA DINAMICA
-  let cat = "";
+  let cat = null;
+
   // BACKGROUND DINAMICO
-  let bkg = "";
+  let bkg = null;
 
   switch (category) {
     case "planetas":
@@ -42,21 +52,11 @@ export default function Category({ items }) {
       break;
 
     default:
-      cat = "null";
-      foundPage = false;
-      console.log("null");
       break;
   }
 
-  // SE FILTRA EL ARRAY BASE COMPARANDO LA CATEGORIA DE CADA ITEM CON LA QUE SE MUESTERA EN EL SWITCH DE BUSQUEDA
-  const filCategory = items.filter((item) => {
-    return item.category == cat;
-  });
-
-  console.log(filCategory);
-
   {
-    if (!foundPage) {
+    if (!success) {
       return <div>La pagina no existe</div>;
     } else {
       return (
@@ -80,7 +80,7 @@ export default function Category({ items }) {
             </div>
 
             <div className="grid sm:grid-cols-1 md:grid-cols-1 gap-8 grid-cols-3 pt-20 grid-flow-row sm:gap-10 md:gap-10">
-              {filCategory.map(({ _id, name, category, urlImg }) => (
+              {items.map(({ _id, name, category, urlImg }) => (
                 <div
                   key={_id}
                   className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col justify-end w-full sm:h-30% md:h-40% h-70% bg-cover bg-no-repeat bg-center rounded-2xl bg-[url("https://${urlImg}")]`}
@@ -104,20 +104,49 @@ export default function Category({ items }) {
   }
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }) {
   try {
     await connectDb();
 
-    const res = await Item.find({});
+    // LA CONSTANTE CATEGORY RECOGE EL STRING QUE REPRESENTA LA CATEGORIA DINAMICA DENTRO DEL OBJETO PARAMS
+    const category = params.category;
 
-    const items = res.map((doc) => {
-      const item = doc.toObject();
-      item._id = `${item._id}`;
-      return item;
-    });
+    // resMap ES UNA FUNCIÓN CUYO PARAMETRO CATEGORY ES DINÁMICO Y VARÍA DE ACUERDO AL VALOR DE category: EL STRING DE LA URL
+    const resMap = async (category) => {
+      const res = await category.find({});
+      const items = res.map((doc) => {
+        const item = doc.toObject();
+        item._id = `${item._id}`;
+        return item;
+      });
+      return { props: { success: true, items } };
+    };
 
-    return { props: { items } };
+    switch (category) {
+      case "planetas":
+        return resMap(Planeta);
+
+      case "planetas-enanos":
+        return resMap(PlanetaEnano);
+
+      case "asteroides":
+        return resMap(Asteroide);
+
+      case "cometas":
+        return resMap(Cometa);
+
+      case "estrellas":
+        return resMap(Estrella);
+
+      default:
+        throw new Error(`Parametro invalido o no especificado: ${category}`);
+    }
   } catch (error) {
-    console.log(error);
+    return {
+      props: {
+        success: false,
+        error: "Parametro inválido",
+      },
+    };
   }
 }

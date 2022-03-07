@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import HeadLayout from "../../../components/Head";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
