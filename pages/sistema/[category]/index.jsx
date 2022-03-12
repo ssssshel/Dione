@@ -15,11 +15,12 @@ import Footer from "../../../components/Footer";
 import HeadLayout from "../../../components/Head";
 import Navbar from "../../../components/Navbar";
 
-export default function Category({ success, error, items }) {
+export default function Category({ success, error, items, par }) {
   const router = useRouter();
 
   console.log(`success: ${success}`);
   console.log(`error: ${error}`);
+  console.log(`items: ${items}`);
 
   // OBTIENE LA RUTA DINAMICA A PARTIR DE LA URL Y SE CONVIERTE A STRNG PROCEDENTE DE UN OBJETO
   const { category } = router.query;
@@ -57,7 +58,18 @@ export default function Category({ success, error, items }) {
 
   {
     if (!success) {
-      return <div>La pagina no existe</div>;
+      return (
+        <div>
+          <h2>Categoría inválida</h2>
+          <p
+            onClick={() => {
+              router.push("/sistema");
+            }}
+          >
+            Volver
+          </p>
+        </div>
+      );
     } else {
       return (
         <div>
@@ -85,7 +97,7 @@ export default function Category({ success, error, items }) {
                   key={_id}
                   className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col justify-end w-full sm:h-30% md:h-40% h-70% bg-cover bg-no-repeat bg-center rounded-2xl bg-[url("https://${urlImg}")]`}
                 >
-                  <Link href={`/sistema/${category}/${name}`}>
+                  <Link href={`${par}/${_id}`}>
                     <a>
                       <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
                         {name} - {category}
@@ -109,7 +121,7 @@ export async function getServerSideProps({ params }) {
     await connectDb();
 
     // LA CONSTANTE CATEGORY RECOGE EL STRING QUE REPRESENTA LA CATEGORIA DINAMICA DENTRO DEL OBJETO PARAMS
-    const category = params.category;
+    const cat = params.category;
 
     // resMap ES UNA FUNCIÓN CUYO PARAMETRO CATEGORY ES DINÁMICO Y VARÍA DE ACUERDO AL VALOR DE category: EL STRING DE LA URL
     const resMap = async (category) => {
@@ -119,10 +131,10 @@ export async function getServerSideProps({ params }) {
         item._id = `${item._id}`;
         return item;
       });
-      return { props: { success: true, items } };
+      return { props: { success: true, items, par: cat } };
     };
 
-    switch (category) {
+    switch (cat) {
       case "planetas":
         return resMap(Planeta);
 
@@ -139,7 +151,7 @@ export async function getServerSideProps({ params }) {
         return resMap(Estrella);
 
       default:
-        throw new Error(`Parametro invalido o no especificado: ${category}`);
+        throw new Error(`Parametro invalido o no especificado: ${cat}`);
     }
   } catch (error) {
     return {

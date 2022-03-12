@@ -11,6 +11,28 @@ const EstrellaSchema = new mongoose.Schema({
   },
   diameter: {
     type: String
+  },
+  mass: {
+    type: String,
+  },
+  volume:{
+    type: String,
+  },
+  density:{
+    type: String,
+  },
+  gravity:{
+    type: String,
+  },
+  temperature:{
+    type: String,
+  },
+
+  urlImg:{
+    type: String
+  },
+  urlImg2:{
+    type: String
   }
 })
 

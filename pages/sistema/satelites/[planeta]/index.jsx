@@ -76,7 +76,7 @@ export default function Planet({ success, error, items }) {
                   key={_id}
                   className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col justify-end w-full sm:h-30% md:h-40% h-70% bg-cover bg-no-repeat bg-center rounded-2xl bg-[url("https://${urlImg}")]`}
                 >
-                  <Link href={`/sistema/satelites/${parent}/${name}`}>
+                  <Link href={`${parent.toLowerCase()}/${name.toLowerCase()}`}>
                     <a>
                       <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
                         {name} - {parent}
@@ -98,19 +98,20 @@ export default function Planet({ success, error, items }) {
 export async function getServerSideProps({ params }) {
   try {
     await connectDb();
-    const planeta = params.planeta;
+
+    const par = params.planeta;
 
     const resMap = async (planeta) => {
-      const res = await Satelite.find({ parent: `${planeta}` });
+      const res = await Satelite.find({ parent: planeta });
       const items = res.map((doc) => {
         const item = doc.toObject();
         item._id = `${item._id}`;
         return item;
       });
-      return { props: { success: true, items } };
+      return { props: { success: true, items, planeta: par } };
     };
 
-    switch (planeta) {
+    switch (par) {
       case "tierra":
         return resMap("Tierra");
       case "marte":
@@ -127,7 +128,7 @@ export async function getServerSideProps({ params }) {
         return resMap("Pluton");
       default:
         throw new Error(
-          `Parámetro de busqueda inválido o no especificado: ${planeta}`
+          `Parámetro de busqueda inválido o no especificado: ${par}`
         );
     }
   } catch (error) {

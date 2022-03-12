@@ -33,6 +33,7 @@ module.exports = {
         'lavander': '#f2ebff'
       },
       spacing: {
+        '100%': '100vh',
         '90%': '90vh',
         '80%': '80vh',
         '70%': '70vh',
