@@ -76,7 +76,7 @@ export default function Planet({ success, error, items }) {
                   key={_id}
                   className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col justify-end w-full sm:h-30% md:h-40% h-70% bg-cover bg-no-repeat bg-center rounded-2xl bg-[url("https://${urlImg}")]`}
                 >
-                  <Link href={`${parent.toLowerCase()}/${name.toLowerCase()}`}>
+                  <Link href={`${parent.toLowerCase()}/${_id}`}>
                     <a>
                       <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
                         {name} - {parent}

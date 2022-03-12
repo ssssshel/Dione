@@ -167,8 +167,9 @@ export async function getServerSideProps({ params }) {
         },
       };
     }
-    const paramsMap = async (category, n) => {
-      const res = await category.findById(n).lean();
+    // SE BUSCA EL DOCUMENTO EN LA COLECCIÓN DEFINIDA COMO PARÁMETRO
+    const paramsMap = async (category, id) => {
+      const res = await category.findById(id).lean();
       res._id = `${res._id}`;
       return {
         props: {
