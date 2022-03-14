@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 
-// import Item from "../../../models/Item";
 import Planeta from "../../../models/Planeta";
 import PlanetaEnano from "../../../models/PlanetaEnano";
 import Asteroide from "../../../models/Asteroide";
