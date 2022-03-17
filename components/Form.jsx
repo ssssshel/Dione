@@ -2,14 +2,19 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 
-const Form = ({ formData, formNewItem, formCategory }) => {
+const Form = ({
+  formData,
+  formNewItem = true,
+  formCategory,
+  formSatelite = null,
+}) => {
   const router = useRouter();
-  const category = formCategory;
-  console.log(`category = ${category}`);
+  const cat = formCategory;
+  console.log(`sateliteform: ${formSatelite}`);
 
   // SE ESTABLECE COMO PARAMETRO DE useState UNA FUNCIÓN QUE DEVUELVE UN OBJETO EN FUNCIÓN AL VALOR DE LA CONSTANTE CATEGORY
   const [form, setForm] = useState(() => {
-    switch (category) {
+    switch (cat) {
       case "Planetas":
         return {
           name: formData.name,
@@ -131,10 +136,14 @@ const Form = ({ formData, formNewItem, formCategory }) => {
   // INTERCAMBIA LA FUNCIÓN DEL FORMULARIO DEPENDIENDO DE LOS PROPS QUE CONTENGA EL COMPONENTE DONDE SE UBIQUE
   const handleSubmit = (e) => {
     e.preventDefault();
-    postData(form);
+    if (!formNewItem) {
+      putData(form);
+    } else {
+      postData(form);
+    }
   };
 
-  // POSTDATA
+  // POSTDATA cliente => API
   const postData = async (form) => {
     const { category } = router.query;
     try {
@@ -158,9 +167,43 @@ const Form = ({ formData, formNewItem, formCategory }) => {
     }
   };
 
+  // PUTDATA cliente => API
+  const putData = async (form) => {
+    const { category, id } = router.query;
+    const request = {};
+    if (!formSatelite) {
+      request.url = `/api/data/${category}/${id}`;
+      request.fetchData = {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(form),
+      };
+    } else {
+      request.url = `/api/data/satelites/${id}`;
+      request.fetchData = {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(form),
+      };
+    }
+    try {
+      const res = await fetch(request.url, request.fetchData);
+      const data = await res.json();
+      if (data.success) {
+        router.push(`/`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
-      <h1>Registro de {category} </h1>
+      <h1>Registro de {cat} </h1>
       <form
         autoComplete="off"
         onSubmit={handleSubmit}
@@ -170,7 +213,7 @@ const Form = ({ formData, formNewItem, formCategory }) => {
           Categoría:
           <input type="text" name="category" value={form.category} />
         </p>
-        {category == "Planetas" || category == "Planetas Enanos" ? (
+        {cat == "Planetas" || cat == "Planetas Enanos" ? (
           <div>
             <p>
               Nombre:
@@ -308,7 +351,7 @@ const Form = ({ formData, formNewItem, formCategory }) => {
               />
             </p>
           </div>
-        ) : category == "Satelites" ? (
+        ) : cat == "Satelites" ? (
           <div>
             <p>
               Nombre:
@@ -438,7 +481,7 @@ const Form = ({ formData, formNewItem, formCategory }) => {
               />
             </p>
           </div>
-        ) : category == "Asteroides" || category == "Cometas" ? (
+        ) : cat == "Asteroides" || cat == "Cometas" ? (
           <div>
             <p>
               Nombre:
@@ -558,7 +601,7 @@ const Form = ({ formData, formNewItem, formCategory }) => {
               />
             </p>
           </div>
-        ) : category == "Estrellas" ? (
+        ) : cat == "Estrellas" ? (
           <div>
             <p>
               Nombre:
@@ -646,7 +689,7 @@ const Form = ({ formData, formNewItem, formCategory }) => {
           <div>Categoria no especificada</div>
         )}
 
-        <button type="submit">Agregar</button>
+        <button type="submit">{formNewItem ? "Agregar" : "Editar"}</button>
       </form>
     </div>
   );

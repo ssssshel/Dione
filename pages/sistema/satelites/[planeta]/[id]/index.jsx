@@ -71,7 +71,7 @@ export default function Item({ success, error, item, planet }) {
               <li>Presión Atmosférica: {item.atmPressure} </li>
               <li>Temperatura: {item.temperature} </li>
               <div className="flex flex-row gap-4 mt-4">
-                <Link href={`/sistema/satelites/${item._id}/edit`}>
+                <Link href={`/sistema/satelites/${planet}/${item._id}/edit`}>
                   <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
                     Editar
                   </a>
