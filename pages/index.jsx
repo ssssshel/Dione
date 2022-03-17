@@ -1,26 +1,10 @@
-import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
-
-import { buildUrl } from "cloudinary-build-url";
 
 import HeadLayout from "../components/Head";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  const imgUrl = buildUrl("Dione/Planetas/saturn_fcvyr4", {
-    cloud: {
-      cloudName: "duuwcvkzg",
-    },
-    // transformations:{
-    //   effect:{
-    //     name: 'sharpen',
-    //     value: 40
-    //   }
-    // }
-  });
-
   return (
     <div className="w-full bg-slate-600">
       <HeadLayout section="Index" desc="Bienvenido a Dione" />

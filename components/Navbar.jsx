@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-// import navbar from "../styles/Navbar.module.css"
+
 import menus from "../public/img/menus.png";
 import close from "../public/img/xwhite.png";
 
@@ -8,54 +8,68 @@ import logoClaro from "../public/img/LogoClaro.svg";
 import { useState, useEffect } from "react";
 
 const Navbar = () => {
-  const [optionsTog, setOptionsTog] = useState("");
+  // WEB STATE
+  const [optionsTog, setOptionsTog] = useState(null);
+
+  // MOBILE STATE
+  const [mobileTog, setMobileTog] = useState(false);
 
   useEffect(() => {
-    const optionsSystem = document.getElementById("opSystem");
+    // WEB NAVBAR MANAGEMENT
+    const webOptionsContainer = document.getElementById("webOpCont");
     const options1 = document.getElementById("op1");
     const options2 = document.getElementById("op2");
-    if (optionsTog == "opt1") {
-      optionsSystem.style.display = "block";
-      options1.style.display = "flex";
-      options2.style.display = "none";
-    } else if (optionsTog == "opt2") {
-      optionsSystem.style.display = "block";
-      options2.style.display = "flex";
-      options1.style.display = "none";
-    }
+
+    const toggleWebDisplay = () => {
+      // ACTIVA O DESACTIVA EL CONTENEDOR
+      if (optionsTog == "opt1" || optionsTog == "opt2") {
+        webOptionsContainer.style.display = "block";
+      } else {
+        webOptionsContainer.style.display = "none";
+      }
+
+      // MUESTRA LAS OPCIONES DE ACUERDO AL VALOR ASIGNADO AL ESTADO DE optionsTog
+      if (optionsTog == "opt1") {
+        options1.style.display = "flex";
+        options2.style.display = "none";
+      } else if (optionsTog == "opt2") {
+        options1.style.display = "none";
+        options2.style.display = "flex";
+      } else {
+        options1.style.display = "none";
+        options2.style.display = "none";
+      }
+    };
+
+    // MOBILE NAVBAR MANAGEMENT
+    const burger = document.getElementById("burgerBtn");
+    const close = document.getElementById("closeBtn");
+    const mobOptCont = document.getElementById("mobOptionsContainer");
+    const mobOpt = document.getElementById("mobOptions");
+
+    const toggleMobileDisplay = () => {
+      if (!mobileTog) {
+        burger.style.display = "block";
+        close.style.display = "none";
+        mobOptCont.style.height = "5rem";
+        mobOpt.style.display = "none";
+      } else {
+        burger.style.display = "none";
+        close.style.display = "block";
+        mobOptCont.style.height = "100vh";
+        mobOpt.style.display = "block";
+      }
+    };
+
+    toggleWebDisplay();
+    toggleMobileDisplay();
   });
-
-  // MOBILE NAVBAR
-
-  function openMenu() {
-    const burger = document.getElementById("burgerBtn");
-    const close = document.getElementById("closeBtn");
-    const navbar = document.getElementById("navbar");
-    const options = document.getElementById("options");
-    burger.style.display = "none";
-    close.style.display = "block";
-    navbar.style.height = "100vh";
-    options.style.display = "block";
-  }
-
-  function closeMenu() {
-    const burger = document.getElementById("burgerBtn");
-    const close = document.getElementById("closeBtn");
-    burger.style.display = "block";
-    close.style.display = "none";
-    navbar.style.height = "5rem";
-    options.style.display = "none";
-  }
-
-  function closeDropdown() {
-    const optionsSystem = document.getElementById("opSystem");
-    optionsSystem.style.display = "none";
-  }
 
   return (
     <div>
+      {/* NAVBAR MOBILE */}
       <div
-        id="navbar"
+        id="mobOptionsContainer"
         className="fixed z-10 w-full h-20 px-5 rounded-b-xl backdrop-blur-md lg:hidden xl:hidden 2xl:hidden bg-purple/30 "
       >
         <div className="flex items-center content-center justify-between mt-5">
@@ -63,15 +77,24 @@ const Navbar = () => {
             <p className="text-3xl font-normal text-white font-Dosis">Dione</p>
           </div>
           <div className="relative w-6 h-6 mt-2">
-            <div id="burgerBtn" className="absolute block " onClick={openMenu}>
+            <div
+              id="burgerBtn"
+              className="absolute block "
+              onClick={() => setMobileTog((mobileTog = true))}
+            >
               <Image alt="menu" width={25} height={25} src={menus} />
             </div>
-            <div id="closeBtn" className="absolute hidden" onClick={closeMenu}>
+            <div
+              id="closeBtn"
+              className="absolute hidden"
+              onClick={() => setMobileTog((mobileTog = false))}
+            >
               <Image alt="close" width={20} height={20} src={close} />
             </div>
           </div>
         </div>
-        <div id="options" className="relative hidden top-20">
+        {/* OPCIONES MOBILE */}
+        <div id="mobOptions" className="relative hidden top-20">
           <ul className="flex flex-col gap-8">
             <li className="w-full text-center rounded-lg hover:bg-lavander/20">
               <Link href="/">
@@ -107,6 +130,7 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* NAVBAR WEB */}
       <div className="fixed z-10 w-full h-auto px-14 bg-purple/30 backdrop-blur-md sm:hidden md:hidden">
         <div className="flex flex-row items-center justify-between">
           <div>
@@ -136,19 +160,19 @@ const Navbar = () => {
                   </a>
                 </Link>
               </li>
-              <li onMouseOver={() => setOptionsTog((optionsTog = "opt2"))}>
-                <a
-                  id="about"
-                  className="text-lg hover:text-bluebell text-lavander"
-                >
-                  Acerca de
-                </a>
+              <li
+                className="text-lg cursor-pointer hover:text-bluebell text-lavander"
+                id="about"
+                onMouseOver={() => setOptionsTog((optionsTog = "opt2"))}
+              >
+                <a>Acerca de</a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div id="opSystem" className="relative hidden h-screen top-20">
+        <div id="webOpCont" className="relative hidden h-screen top-20">
+          {/* OPCIONES SISTEMA */}
           <ul
             id="op1"
             className="hidden flex-row justify-between float-right w-full text-base font-semibold cursor-pointer text-lavander"
@@ -332,11 +356,13 @@ const Navbar = () => {
             </li>
             <li
               className="text-3xl hover:text-bluebell"
-              onClick={closeDropdown}
+              onClick={() => setOptionsTog((optionsTog = null))}
             >
               x
             </li>
           </ul>
+
+          {/* OPCIONES ABOUT */}
           <ul
             id="op2"
             className=" hidden flex-row justify-between float-right w-full text-base font-semibold cursor-pointer text-lavander"
@@ -358,7 +384,7 @@ const Navbar = () => {
             </li>
             <li
               className="text-3xl hover:text-bluebell"
-              onClick={closeDropdown}
+              onClick={() => setOptionsTog((optionsTog = null))}
             >
               x
             </li>

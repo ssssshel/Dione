@@ -1,6 +1,5 @@
-
-import Planeta from "../../../../models/Planeta";
-import PlanetaEnano from "../../../../models/PlanetaEnano";
+import Planeta from "../../../../models/Planeta"
+import PlanetaEnano from "../../../../models/PlanetaEnano"
 import Satelite from "../../../../models/Satelite";
 import Asteroide from "../../../../models/Asteroide";
 import Cometa from "../../../../models/Cometa";
