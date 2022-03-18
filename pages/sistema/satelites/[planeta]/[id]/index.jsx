@@ -8,8 +8,9 @@ import { useRouter } from "next/router";
 import HeadLayout from "../../../../../components/Head";
 import Navbar from "../../../../../components/Navbar";
 import Footer from "../../../../../components/Footer";
+import { getSession } from "next-auth/react";
 
-export default function Item({ success, error, item, planet }) {
+export default function Item({ success, error, item, planet, auth }) {
   console.log(`success: ${success}`);
   console.log(`error: ${error}`);
   console.log(`planet: ${planet}`);
@@ -70,19 +71,23 @@ export default function Item({ success, error, item, planet }) {
               <li>Inclinación: {item.inclination} </li>
               <li>Presión Atmosférica: {item.atmPressure} </li>
               <li>Temperatura: {item.temperature} </li>
-              <div className="flex flex-row gap-4 mt-4">
-                <Link href={`/sistema/satelites/${planet}/${item._id}/edit`}>
-                  <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
-                    Editar
-                  </a>
-                </Link>
-                <button
-                  onClick={() => deleteData(item._id)}
-                  className="px-4 py-2 bg-purple w-min hover:bg-rhythm"
-                >
-                  Eliminar
-                </button>
-              </div>
+              {auth ? (
+                <div className="flex flex-row gap-4 mt-4">
+                  <Link href={`/sistema/satelites/${planet}/${item._id}/edit`}>
+                    <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
+                      Editar
+                    </a>
+                  </Link>
+                  <button
+                    onClick={() => deleteData(item._id)}
+                    className="px-4 py-2 bg-purple w-min hover:bg-rhythm"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              ) : (
+                <p className="hidden"></p>
+              )}
             </ul>
           </div>
         </div>
@@ -96,7 +101,9 @@ export default function Item({ success, error, item, planet }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, req }) {
+  const session = await getSession({ req });
+
   try {
     await connectDb();
     const planet = params.planeta;
@@ -123,11 +130,24 @@ export async function getServerSideProps({ params }) {
       };
     }
     res._id = `${res._id}`;
+
+    // SE VERIFICA SI EXISTE UNA SESIÓN ACTIVA PARA HABILITAR LAS FUNCIONALIDADES DE ADMINISTRADOR
+    if (!session) {
+      return {
+        props: {
+          success: true,
+          item: res,
+          planet,
+          auth: false,
+        },
+      };
+    }
     return {
       props: {
         success: true,
         item: res,
         planet,
+        auth: true,
       },
     };
   } catch (error) {

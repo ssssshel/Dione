@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 import HeadLayout from "../../../../components/Head";
 import Form from "../../../../components/Form";
@@ -26,6 +28,8 @@ const EditItem = () => {
   const router = useRouter();
   const { id, category } = router.query;
 
+  const { data: session, status } = useSession();
+
   // SE SOLICITA LA DATA A LA API PARA MOSTRARLA DE MANERA ACTUALIZADA
   const { data: items, error } = useSWR(
     id ? `/api/data/${category}/${id}` : null,
@@ -44,6 +48,20 @@ const EditItem = () => {
 
   if (!items) {
     return <div>Cargando...</div>;
+  }
+
+  if (status == "unauthenticated") {
+    return (
+      <div>
+        <h1>No has iniciado sesión como administrador</h1>
+        <button onClick={() => router.push("/api/auth/signin/github")}>
+          Registrarse con github
+        </button>
+        <Link href="/">
+          <a>Volver</a>
+        </Link>
+      </div>
+    );
   }
 
   const formPlaneta = {

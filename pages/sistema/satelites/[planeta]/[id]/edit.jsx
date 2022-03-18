@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 import HeadLayout from "../../../../../components/Head";
 import Form from "../../../../../components/Form";
@@ -23,6 +25,8 @@ const EditSatelite = () => {
   const router = useRouter();
   const { id, category } = router.query;
 
+  const { data: session, status } = useSession();
+
   // SE SOLICITA LA DATA A LA API PARA MOSTRARLA DE MANERA ACTUALIZADA
   const { data: items, error } = useSWR(
     id ? `/api/data/satelites/${id}` : null,
@@ -41,6 +45,20 @@ const EditSatelite = () => {
 
   if (!items) {
     return <div>Cargando...</div>;
+  }
+
+  if (status == "unauthenticated") {
+    return (
+      <div>
+        <h1>No has iniciado sesión como administrador</h1>
+        <button onClick={() => router.push("/api/auth/signin/github")}>
+          Registrarse con github
+        </button>
+        <Link href="/">
+          <a>Volver</a>
+        </Link>
+      </div>
+    );
   }
 
   const formSatelite = {

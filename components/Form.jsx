@@ -171,6 +171,7 @@ const Form = ({
   const putData = async (form) => {
     const { category, id } = router.query;
     const request = {};
+    // 4 !== satelite
     if (!formSatelite) {
       request.url = `/api/data/${category}/${id}`;
       request.fetchData = {
@@ -180,7 +181,9 @@ const Form = ({
         },
         body: JSON.stringify(form),
       };
-    } else {
+    }
+    // 4 == satelite
+    else {
       request.url = `/api/data/satelites/${id}`;
       request.fetchData = {
         method: "PUT",

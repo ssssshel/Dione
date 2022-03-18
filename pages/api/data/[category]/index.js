@@ -6,8 +6,16 @@ import Cometa from "../../../../models/Cometa";
 import Estrella from "../../../../models/Estrella";
 import connectDb from "../../../../lib/connectDb";
 
+import { getSession } from "next-auth/react";
+
 export default async function handler(req, res){
   await connectDb()
+
+  const session = await getSession({req})
+
+  if(!session){
+    return res.status(403).json({error: "Forbidden / No autorizado"})
+  }
 
   // POST api/item/:category
 

@@ -1,10 +1,15 @@
+import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react/cjs/react.development";
+import Link from "next/link";
+
 import Form from "../../../components/Form";
 
 const Item = () => {
   const router = useRouter();
   const { category } = router.query;
+
+  const { data: session, status } = useSession();
 
   // OBJETOS DE CADA FORMULARIO DE ACUERDO A SU CATEGORIA
 
@@ -111,24 +116,44 @@ const Item = () => {
     urlImg2: "",
   };
 
-  // MEDIANTE LOS PROPS SE ESTABLECE EL OBJETO A UTILIZAR DE ACUERDO A LA CATEGORIA DENTRO DE LA URL
+  if (status == "unauthenticated") {
+    return (
+      <div>
+        <h1>No has iniciado sesión como administrador</h1>
+        <button onClick={() => router.push("/api/auth/signin/github")}>
+          Registrarse con github
+        </button>
+        <Link href="/">
+          <a>Volver</a>
+        </Link>
+      </div>
+    );
+  }
+
   return (
+    // MEDIANTE LOS PROPS SE ESTABLECE EL OBJETO A UTILIZAR DE ACUERDO A LA CATEGORIA DENTRO DE LA URL
     <div>
-      <h1>Agregar {category} </h1>
-      {category == "planetas" ? (
-        <Form formData={formPlaneta} formCategory="Planetas" />
-      ) : category == "planetas-enanos" ? (
-        <Form formData={formPlanetaEnano} formCategory="Planetas Enanos" />
-      ) : category == "satelites" ? (
-        <Form formData={formSatelite} formCategory="Satelites" />
-      ) : category == "asteroides" ? (
-        <Form formData={formAsteroide} formCategory="Asteroides" />
-      ) : category == "cometas" ? (
-        <Form formData={formCometa} formCategory="Cometas" />
-      ) : category == "estrellas" ? (
-        <Form formData={formEstrella} formCategory="Estrellas" />
+      {session ? (
+        <div>
+          <h1>Agregar {category} </h1>
+          {category == "planetas" ? (
+            <Form formData={formPlaneta} formCategory="Planetas" />
+          ) : category == "planetas-enanos" ? (
+            <Form formData={formPlanetaEnano} formCategory="Planetas Enanos" />
+          ) : category == "satelites" ? (
+            <Form formData={formSatelite} formCategory="Satelites" />
+          ) : category == "asteroides" ? (
+            <Form formData={formAsteroide} formCategory="Asteroides" />
+          ) : category == "cometas" ? (
+            <Form formData={formCometa} formCategory="Cometas" />
+          ) : category == "estrellas" ? (
+            <Form formData={formEstrella} formCategory="Estrellas" />
+          ) : (
+            <h2>Category inválido</h2>
+          )}
+        </div>
       ) : (
-        <h2>Category inválido</h2>
+        <div>a</div>
       )}
     </div>
   );

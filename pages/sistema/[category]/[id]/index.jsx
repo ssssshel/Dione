@@ -7,15 +7,17 @@ import connectDb from "../../../../lib/connectDb";
 import mongoose from "mongoose";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { getSession } from "next-auth/react";
 
 import Footer from "../../../../components/Footer";
 import HeadLayout from "../../../../components/Head";
 import Navbar from "../../../../components/Navbar";
 
-export default function Item({ success, error, item, category }) {
+export default function Item({ success, error, item, category, auth }) {
   console.log(`success: ${success}`);
   console.log(`error: ${error}`);
   console.log(`category: ${category}`);
+  console.log(`auth: ${auth}`);
 
   const router = useRouter();
 
@@ -77,19 +79,23 @@ export default function Item({ success, error, item, category }) {
                 <li>Temperatura: {item.temperature} </li>
                 <li>Perihelio: {item.periastron} </li>
                 <li>Afelio: {item.aphelion} </li>
-                <div className="flex flex-row gap-4 mt-4">
-                  <Link href={`/sistema/${category}/${item._id}/edit`}>
-                    <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
-                      Editar
-                    </a>
-                  </Link>
-                  <button
-                    onClick={() => deleteData(item._id)}
-                    className="px-4 py-2 bg-purple w-min hover:bg-rhythm"
-                  >
-                    Eliminar
-                  </button>
-                </div>
+                {auth ? (
+                  <div className="flex flex-row gap-4 mt-4">
+                    <Link href={`/sistema/${category}/${item._id}/edit`}>
+                      <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
+                        Editar
+                      </a>
+                    </Link>
+                    <button
+                      onClick={() => deleteData(item._id)}
+                      className="px-4 py-2 bg-purple w-min hover:bg-rhythm"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                ) : (
+                  <p className="hidden"></p>
+                )}
               </ul>
             </div>
           </div>
@@ -125,19 +131,23 @@ export default function Item({ success, error, item, category }) {
                 <li>Temperatura: {item.temperature} </li>
                 <li>Perihelio: {item.periastron} </li>
                 <li>Afelio: {item.aphelion} </li>
-                <div className="flex flex-row gap-4 mt-4">
-                  <Link href={`/sistema/${category}/${item._id}/edit`}>
-                    <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
-                      Editar
-                    </a>
-                  </Link>
-                  <button
-                    onClick={() => deleteData(item._id)}
-                    className="px-4 py-2 bg-purple w-min hover:bg-rhythm"
-                  >
-                    Eliminar
-                  </button>
-                </div>
+                {auth ? (
+                  <div className="flex flex-row gap-4 mt-4">
+                    <Link href={`/sistema/${category}/${item._id}/edit`}>
+                      <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
+                        Editar
+                      </a>
+                    </Link>
+                    <button
+                      onClick={() => deleteData(item._id)}
+                      className="px-4 py-2 bg-purple w-min hover:bg-rhythm"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                ) : (
+                  <p className="hidden"></p>
+                )}
               </ul>
             </div>
           </div>
@@ -170,19 +180,23 @@ export default function Item({ success, error, item, category }) {
                 <li>Gravedad: {item.gravity} </li>
                 <li>Temperatura: {item.temperature} </li>
               </ul>
-              <div className="flex flex-row gap-4 mt-4">
-                <Link href={`/sistema/${category}/${item._id}/edit`}>
-                  <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
-                    Editar
-                  </a>
-                </Link>
-                <button
-                  onClick={() => deleteData(item._id)}
-                  className="px-4 py-2 bg-purple w-min hover:bg-rhythm"
-                >
-                  Eliminar
-                </button>
-              </div>
+              {auth ? (
+                <div className="flex flex-row gap-4 mt-4">
+                  <Link href={`/sistema/${category}/${item._id}/edit`}>
+                    <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
+                      Editar
+                    </a>
+                  </Link>
+                  <button
+                    onClick={() => deleteData(item._id)}
+                    className="px-4 py-2 bg-purple w-min hover:bg-rhythm"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              ) : (
+                <p className="hidden"></p>
+              )}
             </div>
           </div>
           <div
@@ -198,11 +212,13 @@ export default function Item({ success, error, item, category }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, req }) {
   // const capitalizeName = (name) => {
   //   const Name = name.charAt(0).toUpperCase() + name.slice(1);
   //   return Name;
   // };
+
+  const session = await getSession({ req });
   try {
     await connectDb();
     const cat = params.category;
@@ -227,11 +243,23 @@ export async function getServerSideProps({ params }) {
         };
       }
       res._id = `${res._id}`;
+      // SE VERIFICA SI EXISTE UNA SESIÓN ACTIVA PARA HABILITAR LAS FUNCIONALIDADES DE ADMINISTRADOR
+      if (!session) {
+        return {
+          props: {
+            success: true,
+            item: res,
+            category: cat,
+            auth: false,
+          },
+        };
+      }
       return {
         props: {
           success: true,
           item: res,
           category: cat,
+          auth: true,
         },
       };
     };

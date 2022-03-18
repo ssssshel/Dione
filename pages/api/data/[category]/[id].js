@@ -5,11 +5,18 @@ import Asteroide from "../../../../models/Asteroide";
 import Cometa from "../../../../models/Cometa";
 import Estrella from "../../../../models/Estrella";
 import connectDb from "../../../../lib/connectDb";
+import { getSession } from "next-auth/react";
 
 export default async function handler(req, res){
   await connectDb()
 
-  const {method, query: {id, category}, esp} = req
+  const {method, query: {id, category}} = req
+
+  const session = await getSession({req})
+
+  if(!session){
+    return res.status(403).json({error: "Forbidden / No autorizado"})
+  }
   
   // console.log(`cat: ${category}`)
 
@@ -101,21 +108,6 @@ export default async function handler(req, res){
       // PUT api/data/:category/:id
       case 'PUT':
 
-        // if(category == "planetas"){
-        //   methodDataApi("PUT", Planeta, id)
-        // }else if(category == "planetas-enanos"){
-        //   methodDataApi("PUT", PlanetaEnano, id)
-        // }else if(category == "asteroides"){
-        //   methodDataApi("PUT", Asteroide, id)
-        // }else if(category == "cometas"){
-        //   methodDataApi("PUT", Cometa, id)
-        // }else if(category == "estrellas"){
-        //   methodDataApi("PUT", Estrella, id)
-        // }else if(esp == "satelites"){
-        //   methodDataApi("PUT", Satelite, id)
-        // }else{
-        //   throw new Error('Categoría inválida')
-        // }
         switch (category) {
           case "planetas":
             return methodDataApi("PUT", Planeta, id)
