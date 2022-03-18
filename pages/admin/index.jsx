@@ -12,9 +12,9 @@ const Admin = () => {
     return (
       <div>
         <h1>No has iniciado sesión como administrador</h1>
-        <button onClick={() => signIn("github")}>Registrarse con github</button>
+
         <Link href="/">
-          <a>Volver</a>
+          <a>Inicio</a>
         </Link>
       </div>
     );
@@ -64,9 +64,17 @@ const Admin = () => {
               </Link>
             </li>
           </ul>
+          <Link href="/">
+            <a>Inicio</a>
+          </Link>
         </div>
       ) : (
-        <div>No has iniciado sesión</div>
+        <div>
+          <h2>No has iniciado sesión</h2>
+          <Link href="/">
+            <a>Inicio</a>
+          </Link>
+        </div>
       )}
     </div>
   );

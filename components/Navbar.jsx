@@ -6,8 +6,12 @@ import close from "../public/img/xwhite.png";
 
 import logoClaro from "../public/img/LogoClaro.svg";
 import { useState, useEffect } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import GitHub from "next-auth/providers/github";
 
 const Navbar = () => {
+  const { data: session, status } = useSession();
+
   // WEB STATE
   const [optionsTog, setOptionsTog] = useState(null);
 
@@ -106,26 +110,43 @@ const Navbar = () => {
                 <a className="text-lavander">Sistema</a>
               </Link>
             </li>
-            <li className="w-full text-center rounded-lg hover:bg-lavander/20">
+            {/* <li className="w-full text-center rounded-lg hover:bg-lavander/20">
               <Link href="&">
                 <a className="text-lavander">Buscar</a>
               </Link>
-            </li>
+            </li> */}
             <li className="w-full text-center rounded-lg hover:bg-lavander/20">
-              <Link href="&">
+              <Link href="/dione">
                 <a className="text-lavander">El proyecto</a>
               </Link>
             </li>
             <li className="w-full text-center rounded-lg hover:bg-lavander/20">
-              <Link href="&">
+              <Link href="/contacto">
                 <a className="text-lavander">Contacto</a>
               </Link>
             </li>
-            <li className="w-full text-center rounded-lg hover:bg-lavander/20">
-              <Link href="&">
-                <a className="text-lavander">Admin</a>
-              </Link>
-            </li>
+            {!session ? (
+              <li
+                onClick={() => signIn("github", { callbackUrl: "/" })}
+                className="w-full text-center rounded-lg text-lavander hover:bg-lavander/20"
+              >
+                Iniciar sesión
+              </li>
+            ) : (
+              <div>
+                <li className="w-full text-center rounded-lg hover:bg-lavander/20">
+                  <Link href="/admin">
+                    <a className="text-lavander">Admin</a>
+                  </Link>
+                </li>
+                <li
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className="w-full text-center rounded-lg text-lavander hover:bg-lavander/20"
+                >
+                  Cerrar sesión
+                </li>
+              </div>
+            )}
           </ul>
         </div>
       </div>
@@ -175,7 +196,7 @@ const Navbar = () => {
           {/* OPCIONES SISTEMA */}
           <ul
             id="op1"
-            className="hidden flex-row justify-between float-right w-full text-base font-semibold cursor-pointer text-lavander"
+            className="flex-row justify-between hidden float-right w-full text-base font-semibold cursor-pointer text-lavander"
           >
             <li>
               <Link href="/sistema">
@@ -365,7 +386,7 @@ const Navbar = () => {
           {/* OPCIONES ABOUT */}
           <ul
             id="op2"
-            className=" hidden flex-row justify-between float-right w-full text-base font-semibold cursor-pointer text-lavander"
+            className="flex-row justify-between hidden float-right w-full text-base font-semibold cursor-pointer text-lavander"
           >
             <li className="hover:text-rhythm">
               <Link href="">
@@ -377,11 +398,28 @@ const Navbar = () => {
                 <a>Contacto</a>
               </Link>
             </li>
-            <li className="hover:text-rhythm">
-              <Link href="">
-                <a>Admin</a>
-              </Link>
-            </li>
+            {!session ? (
+              <li
+                onClick={() => signIn("github", { callbackUrl: "/" })}
+                className="hover:text-rhythm"
+              >
+                Iniciar sesión
+              </li>
+            ) : (
+              <div>
+                <li className="hover:text-rhythm">
+                  <Link href="/admin">
+                    <a>Admin</a>
+                  </Link>
+                </li>
+                <li
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className="hover:text-rhythm"
+                >
+                  Cerrar sesión
+                </li>
+              </div>
+            )}
             <li
               className="text-3xl hover:text-bluebell"
               onClick={() => setOptionsTog((optionsTog = null))}

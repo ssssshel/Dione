@@ -54,11 +54,8 @@ const EditItem = () => {
     return (
       <div>
         <h1>No has iniciado sesión como administrador</h1>
-        <button onClick={() => router.push("/api/auth/signin/github")}>
-          Registrarse con github
-        </button>
         <Link href="/">
-          <a>Volver</a>
+          <a>Inicio</a>
         </Link>
       </div>
     );
