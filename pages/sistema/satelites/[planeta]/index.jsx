@@ -35,11 +35,29 @@ export default function Planet({ success, error, items }) {
     case "urano":
       planet = "Urano";
       break;
-    case "Neptuno":
+    case "neptuno":
       planet = "Neptuno";
       break;
     case "pluton":
       planet = "Plutón";
+      break;
+    case "eris":
+      planet = "Eris";
+      break;
+    case "makemake":
+      planet = "Makemake";
+      break;
+    case "haumea":
+      planet = "Haumea";
+      break;
+    case "orcus":
+      planet = "Orcus";
+      break;
+    case "quaoar":
+      planet = "Quaoar";
+      break;
+    case "gonggong":
+      planet = "Gonggong";
       break;
 
     default:
@@ -56,21 +74,21 @@ export default function Planet({ success, error, items }) {
 
           <Navbar />
           <div className="sm:hidden flex flex-col justify-center items-center md:hidden h-screen w-full bg-cover bg-no-repeat bg-center bg-[url('https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814747/Dione/Satelites/Art/Sci-Europa-RTS1RFWK_ziqylc.jpg')] ">
-            <div className="bg-lavander/30 py-6 px-16 backdrop-blur-md w-fit">
+            <div className="px-16 py-6 bg-lavander/30 backdrop-blur-md w-fit">
               <h1 className="text-6xl text-purple font-Dosis">
-                Satélites - {planet}
+                Satélites {">"} {planet}
               </h1>
             </div>
           </div>
 
-          <div className="w-full h-auto min-h-screen sm:px-5 md:px-5 px-14 pb-16 xl:py-20 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
+          <div className="w-full h-auto min-h-screen pb-16 sm:px-5 md:px-5 px-14 xl:py-20 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
             <div className="lg:hidden flex flex-col justify-end xl:hidden 2xl:hidden h-90% rounded-2xl shadow-lg shadow-xiketic bg-cover bg-center bg-no-repeat w-full bg-[url('https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814747/Dione/Satelites/Art/Sci-Europa-RTS1RFWK_ziqylc.jpg')]">
               <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
-                Satélites - {planet}
+                Satélites {">"} {planet}
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-1 md:grid-cols-1 gap-8 grid-cols-3 pt-20 grid-flow-row sm:gap-10 md:gap-10">
+            <div className="grid grid-flow-row grid-cols-3 gap-8 pt-20 sm:grid-cols-1 md:grid-cols-1 sm:gap-10 md:gap-10">
               {items.map(({ _id, name, parent, urlImg }) => (
                 <div
                   key={_id}
@@ -117,7 +135,7 @@ export async function getServerSideProps({ params }) {
       case "marte":
         return resMap("Marte");
       case "jupiter":
-        return resMap("Jupiter");
+        return resMap("Júpiter");
       case "saturno":
         return resMap("Saturno");
       case "urano":
@@ -125,7 +143,19 @@ export async function getServerSideProps({ params }) {
       case "neptuno":
         return resMap("Neptuno");
       case "pluton":
-        return resMap("Pluton");
+        return resMap("Plutón");
+      case "eris":
+        return resMap("Eris");
+      case "makemake":
+        return resMap("Makemake");
+      case "haumea":
+        return resMap("Haumea");
+      case "orcus":
+        return resMap("Orcus");
+      case "quaoar":
+        return resMap("Quaoar");
+      case "gonggong":
+        return resMap("Gonggong");
       default:
         throw new Error(
           `Parámetro de busqueda inválido o no especificado: ${par}`
