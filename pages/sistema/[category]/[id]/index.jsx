@@ -7,19 +7,21 @@ import connectDb from "../../../../lib/connectDb";
 import mongoose from "mongoose";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 
 import Footer from "../../../../components/Footer";
 import HeadLayout from "../../../../components/Head";
 import Navbar from "../../../../components/Navbar";
 
-export default function Item({ success, error, item, category, auth }) {
-  console.log(`success: ${success}`);
-  console.log(`error: ${error}`);
-  console.log(`category: ${category}`);
-  console.log(`auth: ${auth}`);
+export default function Item({ success, error, item, category }) {
+  // console.log(`success: ${success}`);
+  // console.log(`error: ${error}`);
+  // console.log(`category: ${category}`);
+  // console.log(`auth: ${auth}`);
 
   const router = useRouter();
+
+  const { data: session, status } = useSession();
 
   // PETICIÓN A LA API PARA ELIMINAR UN DOCUMENTO
   const deleteData = async (id) => {
@@ -79,7 +81,7 @@ export default function Item({ success, error, item, category, auth }) {
                 <li>Temperatura: {item.temperature} </li>
                 <li>Perihelio: {item.periastron} </li>
                 <li>Afelio: {item.aphelion} </li>
-                {auth ? (
+                {status == "authenticated" ? (
                   <div className="flex flex-row gap-4 mt-4">
                     <Link href={`/sistema/${category}/${item._id}/edit`}>
                       <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
@@ -131,7 +133,7 @@ export default function Item({ success, error, item, category, auth }) {
                 <li>Temperatura: {item.temperature} </li>
                 <li>Perihelio: {item.periastron} </li>
                 <li>Afelio: {item.aphelion} </li>
-                {auth ? (
+                {status == "authenticated" ? (
                   <div className="flex flex-row gap-4 mt-4">
                     <Link href={`/sistema/${category}/${item._id}/edit`}>
                       <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
@@ -180,7 +182,7 @@ export default function Item({ success, error, item, category, auth }) {
                 <li>Gravedad: {item.gravity} </li>
                 <li>Temperatura: {item.temperature} </li>
               </ul>
-              {auth ? (
+              {status == "authenticated" ? (
                 <div className="flex flex-row gap-4 mt-4">
                   <Link href={`/sistema/${category}/${item._id}/edit`}>
                     <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
@@ -212,13 +214,13 @@ export default function Item({ success, error, item, category, auth }) {
   );
 }
 
-export async function getServerSideProps({ params, req }) {
+export async function getStaticProps({ params, req }) {
   // const capitalizeName = (name) => {
   //   const Name = name.charAt(0).toUpperCase() + name.slice(1);
   //   return Name;
   // };
 
-  const session = await getSession({ req });
+  // const session = await getSession({ req });
   try {
     await connectDb();
     const cat = params.category;
@@ -244,23 +246,23 @@ export async function getServerSideProps({ params, req }) {
       }
       res._id = `${res._id}`;
       // SE VERIFICA SI EXISTE UNA SESIÓN ACTIVA PARA HABILITAR LAS FUNCIONALIDADES DE ADMINISTRADOR
-      if (!session) {
-        return {
-          props: {
-            success: true,
-            item: res,
-            category: cat,
-            auth: false,
-          },
-        };
-      }
+      // if (!session) {
+      //   return {
+      //     props: {
+      //       success: true,
+      //       item: res,
+      //       category: cat,
+      //       auth: false,
+      //     },
+      //   };
+      // }
       return {
         props: {
           success: true,
           item: res,
           category: cat,
-          auth: true,
         },
+        revalidate: 1,
       };
     };
 
@@ -291,4 +293,11 @@ export async function getServerSideProps({ params, req }) {
       },
     };
   }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
 }

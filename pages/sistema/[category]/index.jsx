@@ -17,9 +17,9 @@ import Navbar from "../../../components/Navbar";
 export default function Category({ success, error, items, par }) {
   const router = useRouter();
 
-  console.log(`success: ${success}`);
-  console.log(`error: ${error}`);
-  console.log(`items: ${items}`);
+  // console.log(`success: ${success}`);
+  // console.log(`error: ${error}`);
+  // console.log(`items: ${items}`);
 
   // OBTIENE LA RUTA DINAMICA A PARTIR DE LA URL Y SE CONVIERTE A STRNG PROCEDENTE DE UN OBJETO
   const { category } = router.query;
@@ -59,14 +59,10 @@ export default function Category({ success, error, items, par }) {
     if (!success) {
       return (
         <div>
-          <h2>Categoría inválida</h2>
-          <p
-            onClick={() => {
-              router.push("/sistema");
-            }}
-          >
-            Volver
-          </p>
+          <h2>{error}</h2>
+          <Link href="/">
+            <a>Volver</a>
+          </Link>
         </div>
       );
     } else {
@@ -113,7 +109,7 @@ export default function Category({ success, error, items, par }) {
   }
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   try {
     await connectDb();
 
@@ -128,7 +124,14 @@ export async function getServerSideProps({ params }) {
         item._id = `${item._id}`;
         return item;
       });
-      return { props: { success: true, items, par: cat } };
+      return {
+        props: {
+          success: true,
+          items,
+          par: cat,
+        },
+        revalidate: 1,
+      };
     };
 
     switch (cat) {
@@ -158,4 +161,11 @@ export async function getServerSideProps({ params }) {
       },
     };
   }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
 }

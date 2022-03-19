@@ -8,12 +8,14 @@ import { useRouter } from "next/router";
 import HeadLayout from "../../../../../components/Head";
 import Navbar from "../../../../../components/Navbar";
 import Footer from "../../../../../components/Footer";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 
-export default function Item({ success, error, item, planet, auth }) {
-  console.log(`success: ${success}`);
-  console.log(`error: ${error}`);
-  console.log(`planet: ${planet}`);
+export default function Item({ success, error, item, planet }) {
+  // console.log(`success: ${success}`);
+  // console.log(`error: ${error}`);
+  // console.log(`planet: ${planet}`);
+
+  const { data: session, status } = useSession();
 
   const router = useRouter();
 
@@ -71,8 +73,8 @@ export default function Item({ success, error, item, planet, auth }) {
               <li>Inclinación: {item.inclination} </li>
               <li>Presión Atmosférica: {item.atmPressure} </li>
               <li>Temperatura: {item.temperature} </li>
-              {auth ? (
-                <div className="flex flex-row gap-4 mt-4">
+              {status == "authenticated" ? (
+                <li className="flex flex-row gap-4 mt-4">
                   <Link href={`/sistema/satelites/${planet}/${item._id}/edit`}>
                     <a className="px-4 py-2 bg-purple w-min hover:bg-rhythm">
                       Editar
@@ -84,7 +86,7 @@ export default function Item({ success, error, item, planet, auth }) {
                   >
                     Eliminar
                   </button>
-                </div>
+                </li>
               ) : (
                 <p className="hidden"></p>
               )}
@@ -101,8 +103,8 @@ export default function Item({ success, error, item, planet, auth }) {
   );
 }
 
-export async function getServerSideProps({ params, req }) {
-  const session = await getSession({ req });
+export async function getStaticProps({ params, req }) {
+  // const session = await getSession({ req });
 
   try {
     await connectDb();
@@ -132,23 +134,24 @@ export async function getServerSideProps({ params, req }) {
     res._id = `${res._id}`;
 
     // SE VERIFICA SI EXISTE UNA SESIÓN ACTIVA PARA HABILITAR LAS FUNCIONALIDADES DE ADMINISTRADOR
-    if (!session) {
-      return {
-        props: {
-          success: true,
-          item: res,
-          planet,
-          auth: false,
-        },
-      };
-    }
+    // if (!session) {
+    //   return {
+    //     props: {
+    //       success: true,
+    //       item: res,
+    //       planet,
+    //       auth: false,
+    //     },
+    //   };
+    // }
     return {
       props: {
         success: true,
         item: res,
         planet,
-        auth: true,
+        // auth: true,
       },
+      revalidate: 1,
     };
   } catch (error) {
     return {
@@ -158,4 +161,11 @@ export async function getServerSideProps({ params, req }) {
       },
     };
   }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
 }

@@ -1,22 +1,27 @@
-import Link from "next/link";
-import Image from "next/image";
+// import Planeta from "../models/Planeta";
+// import PlanetaEnano from "../models/PlanetaEnano";
+// import connectDb from "../lib/connectDb";
 
 import menus from "../public/img/menus.png";
 import close from "../public/img/xwhite.png";
-
 import logoClaro from "../public/img/LogoClaro.svg";
+
+import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import GitHub from "next-auth/providers/github";
 
-const Navbar = () => {
+export default function Navbar({ success, error }) {
+  console.log(`success: ${success}`);
+  console.log(`error: ${error}`);
+
   const { data: session, status } = useSession();
 
   // WEB STATE
-  const [optionsTog, setOptionsTog] = useState(null);
+  let [optionsTog, setOptionsTog] = useState(null);
 
   // MOBILE STATE
-  const [mobileTog, setMobileTog] = useState(false);
+  let [mobileTog, setMobileTog] = useState(false);
 
   useEffect(() => {
     // WEB NAVBAR MANAGEMENT
@@ -68,6 +73,61 @@ const Navbar = () => {
     toggleWebDisplay();
     toggleMobileDisplay();
   });
+
+  const planetsWithSat = [
+    {
+      name: "Tierra",
+      urlName: "tierra",
+    },
+    {
+      name: "Marte",
+      urlName: "marte",
+    },
+    {
+      name: "Júpiter",
+      urlName: "jupiter",
+    },
+    {
+      name: "Saturno",
+      urlName: "saturno",
+    },
+    {
+      name: "Urano",
+      urlName: "urano",
+    },
+    {
+      name: "Neptuno",
+      urlName: "neptuno",
+    },
+    {
+      name: "Plutón",
+      urlName: "pluton",
+    },
+    {
+      name: "Eris",
+      urlName: "eris",
+    },
+    {
+      name: "Makemake",
+      urlName: "makemake",
+    },
+    {
+      name: "Haumea",
+      urlName: "haumea",
+    },
+    {
+      name: "Orcus",
+      urlName: "orcus",
+    },
+    {
+      name: "Quaoar",
+      urlName: "quaoar",
+    },
+    {
+      name: "Gonggong",
+      urlName: "gonggong",
+    },
+  ];
 
   return (
     <div>
@@ -208,48 +268,15 @@ const Navbar = () => {
               <Link href="/sistema/planetas">
                 <a>Planetas</a>
               </Link>
-              <ul className="mt-5 font-light">
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Mercurio</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Venus</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>La Tierra</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Marte</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Júpiter</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Saturno</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Urano</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Neptuno</a>
-                  </Link>
-                </li>
-              </ul>
+              {/* {planetas.map(({ _id, name }) => (
+                <ul key={_id} className="mt-5 font-light">
+                  <li className="hover:text-rhythm">
+                    <Link href={`/sistema/planetas/${_id}`}>
+                      <a>{name}</a>
+                    </Link>
+                  </li>
+                </ul>
+              ))} */}
             </li>
             <li>
               <Link href="/sistema/planetas-enanos">
@@ -431,6 +458,41 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Navbar;
+// export async function getStaticProps() {
+//   try {
+//     await connectDb();
+
+//     // PLANETAS
+//     const resPlaneta = await Planeta.find({});
+//     const itemsPlaneta = resPlaneta.map((doc) => {
+//       const item = doc.toObject();
+//       item._id = `${item._id}`;
+//       return item;
+//     });
+
+//     // PLANETAS ENANOS
+//     const resPlanetaEnano = await PlanetaEnano.find({});
+//     const itemsPlanetaEnano = resPlanetaEnano.map((doc) => {
+//       const item = doc.toObject();
+//       item._id = `${item._id}`;
+//       return item;
+//     });
+
+//     return {
+//       props: {
+//         success: true,
+//         planetas: itemsPlaneta,
+//         planetasEnanos: itemsPlanetaEnano,
+//       },
+//     };
+//   } catch (error) {
+//     return {
+//       props: {
+//         success: false,
+//         error: "error de petición",
+//       },
+//     };
+//   }
+// }

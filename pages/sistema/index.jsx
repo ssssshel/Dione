@@ -192,7 +192,7 @@ export default function General({
               ))}
             </li>
             <li className="px-2 py-3 rounded-lg bg-bluebell/25">
-              <Link href="">
+              <Link href="/sistema/cometas">
                 <a>Cometas</a>
               </Link>
               {cometas.map(({ _id, name }) => (
@@ -217,7 +217,7 @@ export default function General({
   );
 }
 
-export async function getServerSideProps({}) {
+export async function getStaticProps({}) {
   try {
     await connectDb();
 
@@ -279,6 +279,7 @@ export async function getServerSideProps({}) {
         cometas: itemsCometa,
         estrellas: itemsEstrella,
       },
+      revalidate: 1,
     };
   } catch (error) {
     return {

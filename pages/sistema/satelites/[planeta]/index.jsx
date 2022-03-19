@@ -11,8 +11,8 @@ import Footer from "../../../../components/Footer";
 export default function Planet({ success, error, items }) {
   const router = useRouter();
 
-  console.log(`success: ${success}`);
-  console.log(`error: ${error}`);
+  // console.log(`success: ${success}`);
+  // console.log(`error: ${error}`);
 
   const { planeta } = router.query;
 
@@ -66,7 +66,14 @@ export default function Planet({ success, error, items }) {
 
   {
     if (!success) {
-      return <div>La pagina no existe</div>;
+      return (
+        <div>
+          <h2>{error}</h2>
+          <Link href="/">
+            <a>Volver</a>
+          </Link>
+        </div>
+      );
     } else {
       return (
         <div>
@@ -113,7 +120,7 @@ export default function Planet({ success, error, items }) {
   }
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   try {
     await connectDb();
 
@@ -126,7 +133,7 @@ export async function getServerSideProps({ params }) {
         item._id = `${item._id}`;
         return item;
       });
-      return { props: { success: true, items, planeta: par } };
+      return { props: { success: true, items, planeta: par }, revalidate: 1 };
     };
 
     switch (par) {
@@ -169,4 +176,11 @@ export async function getServerSideProps({ params }) {
       },
     };
   }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
 }
