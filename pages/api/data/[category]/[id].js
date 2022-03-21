@@ -12,6 +12,7 @@ export default async function handler(req, res){
 
   const {method, query: {id, category}} = req
 
+  // SE VEFICIA LA AUTENTICACIÓN DEL USUARIO PARA PROCEDER CON LA HABILITACIÓN DE LAS UFNCIONALIDADES DE LA API
   const session = await getSession({req})
 
   if(!session){

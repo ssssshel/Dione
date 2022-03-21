@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <div className="sm:sticky md:sticky z-20 flex flex-col justify-between w-full h-fit sm:h-screen md:h-screen bg-lavander">
       <div className="flex flex-row justify-between w-full h-full pt-24 pb-32 pl-20 pr-52 sm:py-8 md:py-8 sm:flex-col md:flex-col sm:justify-around md:justify-around sm:px-5 md:px-5">
-        <div className="w-40 sm:w-6/12 md:w-5/12">
+        <div className="w-40 sm:w-32 md:w-5/12">
           <Image alt="Dione" src={logoOscuro} />
         </div>
         <Link href="/">

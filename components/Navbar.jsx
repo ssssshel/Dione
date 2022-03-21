@@ -1,7 +1,3 @@
-// import Planeta from "../models/Planeta";
-// import PlanetaEnano from "../models/PlanetaEnano";
-// import connectDb from "../lib/connectDb";
-
 import menus from "../public/img/menus.png";
 import close from "../public/img/xwhite.png";
 import logoClaro from "../public/img/LogoClaro.svg";
@@ -11,10 +7,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-export default function Navbar({ success, error }) {
-  console.log(`success: ${success}`);
-  console.log(`error: ${error}`);
-
+const Navbar = () => {
   const { data: session, status } = useSession();
 
   // WEB STATE
@@ -254,211 +247,117 @@ export default function Navbar({ success, error }) {
 
         <div id="webOpCont" className="relative hidden h-screen top-20">
           {/* OPCIONES SISTEMA */}
-          <ul
+          <div
             id="op1"
-            className="flex-row justify-between hidden float-right w-full text-base font-semibold cursor-pointer text-lavander"
+            className="flex-row hidden justify-between h-50% 2xl:h-60% w-full font-semibold text-lavander"
           >
-            <li>
-              <Link href="/sistema">
-                <a>Vista General</a>
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/sistema/planetas">
-                <a>Planetas</a>
-              </Link>
-              {/* {planetas.map(({ _id, name }) => (
-                <ul key={_id} className="mt-5 font-light">
-                  <li className="hover:text-rhythm">
-                    <Link href={`/sistema/planetas/${_id}`}>
-                      <a>{name}</a>
-                    </Link>
-                  </li>
-                </ul>
-              ))} */}
-            </li>
-            <li>
-              <Link href="/sistema/planetas-enanos">
-                <a>Planetas Enanos</a>
-              </Link>
-              <ul className="mt-5 font-light">
+            <div className="flex flex-row justify-between px-36 items-center  w-full">
+              <ul className="w-fit text-xl flex flex-col gap-4  cursor-pointer ">
                 <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Ceres</a>
+                  <Link href="/sistema">
+                    <a>Vista General</a>
                   </Link>
                 </li>
                 <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Plutón</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Eris</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Makemake</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Haumea</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Sedna</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Orcus</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Quaoar</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Varuna</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Ixión</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Gonggong</a>
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              Satélites
-              <ul className="mt-5 font-light">
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>La Luna</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Marte</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Júpiter</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Saturno</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Urano</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Neptuno</a>
-                  </Link>
-                </li>
-                <li className="hover:text-rhythm">
-                  <Link href="">
-                    <a>Planetas Enanos</a>
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <Link href="/sistema/otros-cuerpos">
-                <a>Otros cuerpos</a>
-              </Link>
-              <ul className="mt-5 font-light">
-                <li className="hover:text-rhythm">
-                  <Link href="">
+                  <Link href="/sistema/estrellas">
                     <a>El sol</a>
                   </Link>
                 </li>
                 <li className="hover:text-rhythm">
-                  <Link href="">
+                  <Link href="/sistema/planetas">
+                    <a>Planetas</a>
+                  </Link>
+                </li>
+                <li className="hover:text-rhythm">
+                  <Link href="/sistema/planetas-enanos">
+                    <a>Planetas Enanos</a>
+                  </Link>
+                </li>
+                <li className="hover:text-rhythm">
+                  <Link href="/sistema/satelites">
+                    <a>Satélites</a>
+                  </Link>
+                </li>
+                <li className="hover:text-rhythm">
+                  <Link href="/sistema/asteroides">
                     <a>Asteroides</a>
                   </Link>
                 </li>
                 <li className="hover:text-rhythm">
-                  <Link href="">
+                  <Link href="/sistema/cometas">
                     <a>Cometas</a>
                   </Link>
                 </li>
               </ul>
-            </li>
-            <li
-              className="text-3xl hover:text-bluebell"
+
+              {/* IMAGENES */}
+              <div className="bg-rhythm w-5/12 h-full"></div>
+            </div>
+
+            <p
+              className="text-3xl  cursor-pointer  hover:text-bluebell absolute right-0 top-0"
               onClick={() => setOptionsTog((optionsTog = null))}
             >
               x
-            </li>
-          </ul>
+            </p>
+          </div>
 
           {/* OPCIONES ABOUT */}
-          <ul
+          <div
             id="op2"
-            className="flex-row justify-between hidden float-right w-full text-base font-semibold cursor-pointer text-lavander"
+            className="flex-row justify-between hidden h-50% 2xl:h-60% float-right w-full font-semibold cursor-pointer text-lavander"
           >
-            <li className="hover:text-rhythm">
-              <Link href="">
-                <a>El Proyecto</a>
-              </Link>
-            </li>
-            <li className="hover:text-rhythm">
-              <Link href="">
-                <a>Contacto</a>
-              </Link>
-            </li>
-            {!session ? (
-              <li
-                onClick={() => signIn("github", { callbackUrl: "/" })}
-                className="hover:text-rhythm"
-              >
-                Iniciar sesión
-              </li>
-            ) : (
-              <div>
+            <div className="flex items-center">
+              <ul className="text-xl gap-4 flex flex-col ml-36  ">
                 <li className="hover:text-rhythm">
-                  <Link href="/admin">
-                    <a>Admin</a>
+                  <Link href="">
+                    <a>El Proyecto</a>
                   </Link>
                 </li>
-                <li
-                  onClick={() => signOut({ callbackUrl: "/" })}
-                  className="hover:text-rhythm"
-                >
-                  Cerrar sesión
+                <li className="hover:text-rhythm">
+                  <Link href="">
+                    <a>Contacto</a>
+                  </Link>
                 </li>
-              </div>
-            )}
-            <li
-              className="text-3xl hover:text-bluebell"
+                {!session ? (
+                  <li
+                    onClick={() => signIn("github", { callbackUrl: "/" })}
+                    className="hover:text-rhythm"
+                  >
+                    Iniciar sesión
+                  </li>
+                ) : (
+                  <div className="flex flex-col gap-4">
+                    <li className="hover:text-rhythm">
+                      <Link href="/admin">
+                        <a>Admin</a>
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => signOut({ callbackUrl: "/" })}
+                      className="hover:text-rhythm"
+                    >
+                      Cerrar sesión
+                    </li>
+                  </div>
+                )}
+              </ul>
+            </div>
+
+            <p
+              className="text-3xl hover:text-bluebell absolute right-0"
               onClick={() => setOptionsTog((optionsTog = null))}
             >
               x
-            </li>
-          </ul>
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;
 
 // export async function getStaticProps() {
 //   try {
