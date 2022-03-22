@@ -11,10 +11,6 @@ import Footer from "../../../../../components/Footer";
 import { getSession, useSession } from "next-auth/react";
 
 export default function Item({ success, error, item, planet }) {
-  // console.log(`success: ${success}`);
-  // console.log(`error: ${error}`);
-  // console.log(`planet: ${planet}`);
-
   const { data: session, status } = useSession();
 
   const router = useRouter();
@@ -31,12 +27,31 @@ export default function Item({ success, error, item, planet }) {
     }
   };
 
+  if (error) {
+    return (
+      <div className="h-full w-full flex justify-center">
+        <HeadLayout section={"error"} />
+        <div className="h-fit top-2/4 border-xiketic border-2 p-6 flex flex-col items-center absolute">
+          <h2 className=" text-2xl font-Urbanist font-semibold ">
+            Error: {error}
+          </h2>
+          <p
+            className="text-lg font-semibold bg-emerald-600 cursor-pointer"
+            onClick={() => router.push(`/sistema/satelites/${planet}`)}
+          >
+            Volver
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   if (!success) {
     return (
-      <div>
-        <HeadLayout section={"error"} />
-        <h2>{error}</h2>
-        <p onClick={() => router.push(`/sistema/satelites`)}>Volver</p>
+      <div className="h-full w-full flex justify-center">
+        <p className="h-fit top-2/4 absolute text-3xl font-Urbanist font-semibold ">
+          Loading...
+        </p>
       </div>
     );
   }

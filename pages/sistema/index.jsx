@@ -96,6 +96,35 @@ export default function General({
     ));
   };
 
+  if (error) {
+    return (
+      <div className="h-full w-full flex justify-center">
+        <HeadLayout section={"error"} />
+        <div className="h-fit top-2/4 border-xiketic border-2 p-6 flex flex-col items-center absolute">
+          <h2 className=" text-2xl font-Urbanist font-semibold ">
+            Error: {error}
+          </h2>
+          <p
+            className="text-lg font-semibold bg-emerald-600 cursor-pointer"
+            onClick={() => router.push(`/`)}
+          >
+            Volver
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!success) {
+    return (
+      <div className="h-full w-full flex justify-center">
+        <p className="h-fit top-2/4 absolute text-3xl font-Urbanist font-semibold ">
+          Loading...
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <HeadLayout section="Vista General" />

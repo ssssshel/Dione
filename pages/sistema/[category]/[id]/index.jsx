@@ -14,11 +14,6 @@ import HeadLayout from "../../../../components/Head";
 import Navbar from "../../../../components/Navbar";
 
 export default function Item({ success, error, item, category }) {
-  // console.log(`success: ${success}`);
-  // console.log(`error: ${error}`);
-  // console.log(`category: ${category}`);
-  // console.log(`auth: ${auth}`);
-
   const router = useRouter();
 
   const { data: session, status } = useSession();
@@ -35,12 +30,31 @@ export default function Item({ success, error, item, category }) {
     }
   };
 
+  if (error) {
+    return (
+      <div className="h-full w-full flex justify-center">
+        <HeadLayout section={"error"} />
+        <div className="h-fit top-2/4 border-xiketic border-2 p-6 flex flex-col items-center absolute">
+          <h2 className=" text-2xl font-Urbanist font-semibold ">
+            Error: {error}
+          </h2>
+          <p
+            className="text-lg font-semibold bg-emerald-600 cursor-pointer"
+            onClick={() => router.push(`/sistema/${category}`)}
+          >
+            Volver
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   if (!success) {
     return (
-      <div>
-        <HeadLayout section={"error"} />
-        <h2>{error}</h2>
-        <p onClick={() => router.push(`/sistema/${category}`)}>Volver</p>
+      <div className="h-full w-full flex justify-center">
+        <p className="h-fit top-2/4 absolute text-3xl font-Urbanist font-semibold ">
+          Loading...
+        </p>
       </div>
     );
   }
