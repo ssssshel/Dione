@@ -3,7 +3,7 @@ import PlanetaEnano from "../../../../models/PlanetaEnano";
 import Asteroide from "../../../../models/Asteroide";
 import Cometa from "../../../../models/Cometa";
 import Estrella from "../../../../models/Estrella";
-import connectDb from "../../../../lib/connectDb";
+import { connectDb } from "../../../../lib/connectDb";
 import mongoose from "mongoose";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -81,6 +81,7 @@ export default function Item({ success, error, item, category }) {
                 <li>Temperatura: {item.temperature} </li>
                 <li>Perihelio: {item.periastron} </li>
                 <li>Afelio: {item.aphelion} </li>
+                <li>Número de satélites: {item.satellites} </li>
                 {status == "authenticated" ? (
                   <div className="flex flex-row gap-4 mt-4">
                     <Link href={`/sistema/${category}/${item._id}/edit`}>

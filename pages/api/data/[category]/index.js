@@ -4,7 +4,7 @@ import Satelite from "../../../../models/Satelite";
 import Asteroide from "../../../../models/Asteroide";
 import Cometa from "../../../../models/Cometa";
 import Estrella from "../../../../models/Estrella";
-import connectDb from "../../../../lib/connectDb";
+import {connectDb} from "../../../../lib/connectDb";
 
 import { getSession } from "next-auth/react";
 

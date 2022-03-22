@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import Satelite from "../../../../models/Satelite";
-import connectDb from "../../../../lib/connectDb";
+import { connectDb } from "../../../../lib/connectDb";
 
 import HeadLayout from "../../../../components/Head";
 import Navbar from "../../../../components/Navbar";

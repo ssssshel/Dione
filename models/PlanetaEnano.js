@@ -45,6 +45,9 @@ const PlanetaEnanoSchema = new mongoose.Schema({
   aphelion:{
     type: String
   },
+  satellites: {
+    type: String
+  },
   urlImg:{
     type: String
   },

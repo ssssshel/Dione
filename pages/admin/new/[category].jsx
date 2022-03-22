@@ -1,6 +1,5 @@
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react/cjs/react.development";
 import Link from "next/link";
 
 import Form from "../../../components/Form";
@@ -28,6 +27,7 @@ const Item = () => {
     temperature: "",
     periastron: "",
     aphelion: "",
+    satellites: "",
     urlImg: "",
     urlImg2: "",
   };
@@ -47,6 +47,7 @@ const Item = () => {
     temperature: "",
     periastron: "",
     aphelion: "",
+    satellites: "",
     urlImg: "",
     urlImg2: "",
   };

@@ -21,9 +21,9 @@ const Admin = () => {
   }
 
   return (
-    <div>
+    <div className="w-full">
       {session ? (
-        <div>
+        <div className="w-6/12 border-2 border-xiketic mx-auto">
           <div>
             <ul>
               <li>Conectado</li>
@@ -32,36 +32,42 @@ const Admin = () => {
             </ul>
           </div>
           <h2>AGREGAR NUEVO</h2>
-          <ul>
-            <li>
-              <Link href="/admin/new/planetas">
-                <a>Planeta</a>
-              </Link>
+          <ul className="flex flex-col ">
+            <li
+              onClick={() => router.push("/admin/new/planetas")}
+              className="bg-bluebell cursor-pointer text-white text-center hover:bg-lavander hover:text-xiketic "
+            >
+              Planeta
             </li>
-            <li>
-              <Link href="/admin/new/planetas-enanos">
-                <a>Planeta Enano</a>
-              </Link>
+            <li
+              onClick={() => router.push("/admin/new/planetas-enanos")}
+              className="bg-bluebell cursor-pointer text-white text-center hover:bg-lavander hover:text-xiketic "
+            >
+              Planeta Enano
             </li>
-            <li>
-              <Link href="/admin/new/satelites">
-                <a>Satélite</a>
-              </Link>
+            <li
+              onClick={() => router.push("/admin/new/satelites")}
+              className="bg-bluebell cursor-pointer text-white text-center hover:bg-lavander hover:text-xiketic "
+            >
+              Satélite
             </li>
-            <li>
-              <Link href="/admin/new/asteroides">
-                <a>Asteroide</a>
-              </Link>
+            <li
+              onClick={() => router.push("/admin/new/asteroides")}
+              className="bg-bluebell cursor-pointer text-white text-center hover:bg-lavander hover:text-xiketic "
+            >
+              Asteroide
             </li>
-            <li>
-              <Link href="/admin/new/cometas">
-                <a>Cometa</a>
-              </Link>
+            <li
+              onClick={() => router.push("/admin/new/cometas")}
+              className="bg-bluebell cursor-pointer text-white text-center hover:bg-lavander hover:text-xiketic "
+            >
+              Cometa
             </li>
-            <li>
-              <Link href="/admin/new/estrellas">
-                <a>Estrella</a>
-              </Link>
+            <li
+              onClick={() => router.push("/admin/new/estrellas")}
+              className="bg-bluebell cursor-pointer text-white text-center hover:bg-lavander hover:text-xiketic "
+            >
+              Estrella
             </li>
           </ul>
           <Link href="/">

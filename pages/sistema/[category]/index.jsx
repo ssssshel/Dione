@@ -7,7 +7,7 @@ import PlanetaEnano from "../../../models/PlanetaEnano";
 import Asteroide from "../../../models/Asteroide";
 import Cometa from "../../../models/Cometa";
 import Estrella from "../../../models/Estrella";
-import connectDb from "../../../lib/connectDb";
+import { connectDb } from "../../../lib/connectDb";
 import { useRouter } from "next/router";
 
 import Footer from "../../../components/Footer";

@@ -76,6 +76,7 @@ const EditItem = () => {
     temperature: items.temperature,
     periastron: items.periastron,
     aphelion: items.aphelion,
+    satellites: items.aphelion,
     urlImg: items.urlImg,
     urlImg2: items.urlImg2,
   };
@@ -95,6 +96,7 @@ const EditItem = () => {
     temperature: items.temperature,
     periastron: items.periastron,
     aphelion: items.aphelion,
+    satellites: items.aphelion,
     urlImg: items.urlImg,
     urlImg2: items.urlImg2,
   };

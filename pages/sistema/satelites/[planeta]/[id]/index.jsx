@@ -1,5 +1,5 @@
 import Satelite from "../../../../../models/Satelite";
-import connectDb from "../../../../../lib/connectDb";
+import { connectDb } from "../../../../../lib/connectDb";
 
 import mongoose from "mongoose";
 import Link from "next/link";

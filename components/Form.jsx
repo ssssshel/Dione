@@ -31,6 +31,7 @@ const Form = ({
           temperature: formData.temperature,
           periastron: formData.periastron,
           aphelion: formData.aphelion,
+          satellites: formData.satellites,
           urlImg: formData.urlImg,
           urlImg2: formData.urlImg2,
         };
@@ -50,6 +51,7 @@ const Form = ({
           temperature: formData.temperature,
           periastron: formData.periastron,
           aphelion: formData.aphelion,
+          satellites: formData.satellites,
           urlImg: formData.urlImg,
           urlImg2: formData.urlImg2,
         };
@@ -332,6 +334,15 @@ const Form = ({
                 type="text"
                 name="aphelion"
                 value={form.aphelion}
+                onChange={handleChange}
+              />
+            </p>
+            <p>
+              Número de Satélites:
+              <input
+                type="text"
+                name="satellites"
+                value={form.satellites}
                 onChange={handleChange}
               />
             </p>
