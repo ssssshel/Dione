@@ -78,6 +78,7 @@ export default function Item({ success, error, item, planet }) {
               Información General
             </h2>
             <ul className="flex flex-col sm:gap-2 md:gap-2 sm:items-center md:items-center ">
+              <li className="text-lg">Satélite de {item.parent} </li>
               <li>Diametro: {item.diameter} </li>
               <li>Masa: {item.mass} </li>
               <li>Volumen: {item.volume} </li>

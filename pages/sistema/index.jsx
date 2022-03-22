@@ -87,11 +87,11 @@ export default function General({
         key={_id}
         className="p-2 mx-4 my-4 mt-6 rounded-lg hover:bg-lavander/25 sm:mx-0 sm:my-2 sm:px-2 bg-bluebell/25"
       >
-        <li>
-          <Link href={`/sistema/satelites/${parentUrl}/${_id}`}>
-            <a>{name} </a>
-          </Link>
-        </li>
+        <Link href={`/sistema/satelites/${parentUrl}/${_id}`}>
+          <a>
+            <li>{name}</li>
+          </a>
+        </Link>
       </ul>
     ));
   };
@@ -141,11 +141,11 @@ export default function General({
         <div className="py-8">
           <ul className="flex flex-col gap-8 px-6 py-8 mx-14 sm:mx-0 md:mx-12 sm:gap-6 sm:px-4 sm:py-6 text-lavander bg-bluebell/25 rounded-2xl">
             {estrellas.map(({ _id, name }) => (
-              <li key={_id} className="px-2 rounded-lg bg-bluebell/25">
-                <Link href={`/sistema/estrellas/${_id}`}>
-                  <a>{name}</a>
-                </Link>
-              </li>
+              <Link key={_id} href={`/sistema/estrellas/${_id}`}>
+                <a>
+                  <li className="px-2 rounded-lg bg-bluebell/25">{name}</li>
+                </a>
+              </Link>
             ))}
 
             <li className="px-2 py-3 rounded-lg bg-bluebell/25">
@@ -157,11 +157,11 @@ export default function General({
                   key={_id}
                   className="p-2 mx-6 my-6 rounded-lg hover:bg-lavander/25 sm:mx-0 sm:my-2 bg-bluebell/25"
                 >
-                  <li>
-                    <Link href={`/sistema/planetas/${_id}`}>
-                      <a>{name}</a>
-                    </Link>
-                  </li>
+                  <Link href={`/sistema/planetas/${_id}`}>
+                    <a>
+                      <li>{name}</li>
+                    </a>
+                  </Link>
                 </ul>
               ))}
             </li>
@@ -175,11 +175,11 @@ export default function General({
                   key={_id}
                   className="p-2 mx-6 my-6 rounded-lg hover:bg-lavander/25 sm:mx-0 sm:my-2 bg-bluebell/25"
                 >
-                  <li>
-                    <Link href={`/sistema/planetas-enanos/${_id}`}>
-                      <a>{name}</a>
-                    </Link>
-                  </li>
+                  <Link href={`/sistema/planetas-enanos/${_id}`}>
+                    <a>
+                      <li>{name}</li>
+                    </a>
+                  </Link>
                 </ul>
               ))}
             </li>
@@ -193,18 +193,18 @@ export default function General({
                   key={name}
                   className="p-2 mx-6 my-6 rounded-lg hover:bg-lavander/25 sm:mx-0 sm:my-2 bg-bluebell/25"
                 >
-                  <li>
-                    <Link href={`/sistema/satelites/${urlName}`}>
-                      <a>{name}</a>
-                    </Link>
-                    {filterPerPlanet(name, urlName)}
-                  </li>
+                  <Link href={`/sistema/satelites/${urlName}`}>
+                    <a>
+                      <li>{name}</li>
+                    </a>
+                  </Link>
+                  {filterPerPlanet(name, urlName)}
                 </ul>
               ))}
             </li>
 
             <li className="px-2 py-3 rounded-lg bg-bluebell/25">
-              <Link href="">
+              <Link href="/sistema/asteroides">
                 <a>Asteroides</a>
               </Link>
               {asteroides.map(({ _id, name }) => (
@@ -212,11 +212,11 @@ export default function General({
                   key={_id}
                   className="p-2 mx-6 my-6 rounded-lg hover:bg-lavander/25 sm:mx-0 sm:my-2 bg-bluebell/25"
                 >
-                  <li>
-                    <Link href={`/sistema/asteroides/${_id}`}>
-                      <a>{name}</a>
-                    </Link>
-                  </li>
+                  <Link href={`/sistema/asteroides/${_id}`}>
+                    <a>
+                      <li>{name}</li>
+                    </a>
+                  </Link>
                 </ul>
               ))}
             </li>
@@ -229,11 +229,11 @@ export default function General({
                   key={_id}
                   className="p-2 mx-6 my-6 rounded-lg hover:bg-lavander/25 sm:mx-0 sm:my-2 bg-bluebell/25"
                 >
-                  <li>
-                    <Link href={`/sistema/cometas/${_id}`}>
-                      <a>{name}</a>
-                    </Link>
-                  </li>
+                  <Link href={`/sistema/cometas/${_id}`}>
+                    <a>
+                      <li>{name} </li>
+                    </a>
+                  </Link>
                 </ul>
               ))}
             </li>
