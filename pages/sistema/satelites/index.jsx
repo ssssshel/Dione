@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { AdvancedImage } from "@cloudinary/react";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 import HeadLayout from "../../../components/Head";
 import Navbar from "../../../components/Navbar";
@@ -8,71 +10,78 @@ import { useRouter } from "next/router";
 export default function Satelites({}) {
   const router = useRouter();
 
+  // CLOUDINARY
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "duuwcvkzg",
+    },
+  });
+
   const planetsWithSat = [
     {
       name: "Tierra",
       urlName: "tierra",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas/tierra_oxi98u.jpg",
     },
     {
       name: "Marte",
       urlName: "marte",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas/mars-2051747_hv7m30.png",
     },
     {
       name: "Júpiter",
       urlName: "jupiter",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas/jupiter_zkiwy8.png",
     },
     {
       name: "Saturno",
       urlName: "saturno",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas/saturn_fcvyr4.jpg",
     },
     {
       name: "Urano",
       urlName: "urano",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas/Uranus2_w8icdd.jpg",
     },
     {
       name: "Neptuno",
       urlName: "neptuno",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas/neptuno_rzvlst.jpg",
     },
     {
       name: "Plutón",
       urlName: "pluton",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas-Enanos/pluton.jpg",
     },
     {
       name: "Eris",
       urlName: "eris",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas-Enanos/eris_pmbbfo.jpg",
     },
     {
       name: "Makemake",
       urlName: "makemake",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas-Enanos/makemake_ladrqt.jpg",
     },
     {
       name: "Haumea",
       urlName: "haumea",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas-Enanos/haumea2_zvpenh.jpg",
     },
     {
       name: "Orcus",
       urlName: "orcus",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas-Enanos/orcus_fbnwpd.png",
     },
     {
       name: "Quaoar",
       urlName: "quaoar",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas-Enanos/Quaoar_ppoieq.jpg",
     },
     {
       name: "Gonggong",
       urlName: "gonggong",
-      imgUrl: "",
+      imgUrl: "Dione/Planetas-Enanos/gonggong_btezcz.jpg",
     },
   ];
 
@@ -94,21 +103,26 @@ export default function Satelites({}) {
           </div>
         </div>
 
-        {/* dinamic */}
+        {/* dynamic */}
         <div className="grid grid-flow-row grid-cols-3 gap-8 pt-20 sm:grid-cols-1 md:grid-cols-1 sm:gap-10 md:gap-10">
           {planetsWithSat.map(({ name, urlName, imgUrl }) => (
-            <div
-              key={name}
-              className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col justify-end w-full sm:h-30% md:h-40% h-70% bg-cover bg-no-repeat bg-center rounded-2xl bg-[url("https://}")]`}
-            >
-              <Link href={`/sistema/satelites/${urlName}`}>
-                <a>
-                  <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
-                    Satelites de {name}
+            <Link key={name} href={`/sistema/satelites/${urlName}`}>
+              <a>
+                <div
+                  className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col  w-full sm:h-30% md:h-40% h-70% rounded-2xl `}
+                >
+                  <div className="w-full h-full">
+                    <AdvancedImage
+                      className="object-cover rounded-2xl xl:rounded-none 2xl:rounded-none h-full w-full"
+                      cldImg={cld.image(`${imgUrl}`)}
+                    />
+                    <div className="flex flex-col relative bottom-12 xl:bottom-16 2xl:bottom-20 justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
+                      Satelites de {name}
+                    </div>
                   </div>
-                </a>
-              </Link>
-            </div>
+                </div>
+              </a>
+            </Link>
           ))}
         </div>
       </div>

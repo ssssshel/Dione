@@ -227,6 +227,7 @@ const Form = ({
                 name="name"
                 value={form.name}
                 onChange={handleChange}
+                required
               />
             </p>
             <p>
@@ -353,6 +354,7 @@ const Form = ({
                 name="urlImg"
                 value={form.urlImg}
                 onChange={handleChange}
+                required
               />
             </p>
             <p>
@@ -362,6 +364,7 @@ const Form = ({
                 name="urlImg2"
                 value={form.urlImg2}
                 onChange={handleChange}
+                required
               />
             </p>
           </div>
@@ -374,6 +377,7 @@ const Form = ({
                 name="name"
                 value={form.name}
                 onChange={handleChange}
+                required
               />
             </p>
             <p>
@@ -383,6 +387,7 @@ const Form = ({
                 name="parent"
                 value={form.parent}
                 onChange={handleChange}
+                required
               />
             </p>
             <p>
@@ -483,6 +488,7 @@ const Form = ({
                 name="urlImg"
                 value={form.urlImg}
                 onChange={handleChange}
+                required
               />
             </p>
             <p>
@@ -492,6 +498,7 @@ const Form = ({
                 name="urlImg2"
                 value={form.urlImg2}
                 onChange={handleChange}
+                required
               />
             </p>
           </div>
@@ -504,6 +511,7 @@ const Form = ({
                 name="name"
                 value={form.name}
                 onChange={handleChange}
+                required
               />
             </p>
             <p>
@@ -603,6 +611,7 @@ const Form = ({
                 name="urlImg"
                 value={form.urlImg}
                 onChange={handleChange}
+                required
               />
             </p>
             <p>
@@ -612,6 +621,7 @@ const Form = ({
                 name="urlImg2"
                 value={form.urlImg2}
                 onChange={handleChange}
+                required
               />
             </p>
           </div>
@@ -624,6 +634,7 @@ const Form = ({
                 name="name"
                 value={form.name}
                 onChange={handleChange}
+                required
               />
             </p>
             <p>
@@ -687,6 +698,7 @@ const Form = ({
                 name="urlImg"
                 value={form.urlImg}
                 onChange={handleChange}
+                required
               />
             </p>
             <p>
@@ -696,6 +708,7 @@ const Form = ({
                 name="urlImg2"
                 value={form.urlImg2}
                 onChange={handleChange}
+                required
               />
             </p>
           </div>

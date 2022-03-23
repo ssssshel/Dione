@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { AdvancedImage } from "@cloudinary/react";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 import Satelite from "../../../../models/Satelite";
 import { connectDb } from "../../../../lib/connectDb";
@@ -11,58 +13,74 @@ import Footer from "../../../../components/Footer";
 export default function Planet({ success, error, items }) {
   const router = useRouter();
 
-  // console.log(`success: ${success}`);
-  // console.log(`error: ${error}`);
-
   const { planeta } = router.query;
 
+  // PLANET QUERY DINAMICO
   let planet = null;
-  let bgk = null;
 
-  switch (planeta) {
-    case "tierra":
-      planet = "Tierra";
-      break;
-    case "marte":
-      planet = "Marte";
-      break;
-    case "jupiter":
-      planet = "Júpiter";
-      break;
-    case "saturno":
-      planet = "Saturno";
-      break;
-    case "urano":
-      planet = "Urano";
-      break;
-    case "neptuno":
-      planet = "Neptuno";
-      break;
-    case "pluton":
-      planet = "Plutón";
-      break;
-    case "eris":
-      planet = "Eris";
-      break;
-    case "makemake":
-      planet = "Makemake";
-      break;
-    case "haumea":
-      planet = "Haumea";
-      break;
-    case "orcus":
-      planet = "Orcus";
-      break;
-    case "quaoar":
-      planet = "Quaoar";
-      break;
-    case "gonggong":
-      planet = "Gonggong";
-      break;
+  // CLOUDINARY
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "duuwcvkzg",
+    },
+  });
 
-    default:
-      break;
-  }
+  // BACKGORUND CLD
+
+  let bkg = null;
+
+  const changePath = (path) => {
+    return (bkg = cld.image(path));
+  };
+
+  const changeBkgTit = () => {
+    switch (planeta) {
+      case "tierra":
+        planet = "Tierra";
+        return changePath("Dione/Planetas/tierra_oxi98u.jpg");
+      case "marte":
+        planet = "Marte";
+        return changePath("Dione/Planetas/mars-2051747_hv7m30.png");
+      case "jupiter":
+        planet = "Júpiter";
+        return changePath("Dione/Planetas/jupiter_zkiwy8.png");
+      case "saturno":
+        planet = "Saturno";
+        return changePath("Dione/Planetas/saturn_fcvyr4.jpg");
+      case "urano":
+        planet = "Urano";
+        return changePath("Dione/Planetas/Uranus2_w8icdd.jpg");
+      case "neptuno":
+        planet = "Neptuno";
+        return changePath("Dione/Planetas/neptuno_rzvlst.jpg");
+      case "pluton":
+        planet = "Plutón";
+        return changePath("Dione/Planetas-Enanos/pluton.jpg");
+      case "eris":
+        planet = "Eris";
+        return changePath("Dione/Planetas-Enanos/eris_pmbbfo.jpg");
+      case "makemake":
+        planet = "Makemake";
+        return changePath("Dione/Planetas-Enanos/makemake_ladrqt.jpg");
+      case "haumea":
+        planet = "Haumea";
+        return changePath("Dione/Planetas-Enanos/haumea2_zvpenh.jpg");
+      case "orcus":
+        planet = "Orcus";
+        return changePath("Dione/Planetas-Enanos/orcus_fbnwpd.png");
+      case "quaoar":
+        planet = "Quaoar";
+        return changePath("Dione/Planetas-Enanos/Quaoar_ppoieq.jpg");
+      case "gonggong":
+        planet = "Gonggong";
+        return changePath("Dione/Planetas-Enanos/gonggong_btezcz.jpg");
+
+      default:
+        break;
+    }
+  };
+
+  changeBkgTit();
 
   if (error) {
     return (
@@ -98,8 +116,10 @@ export default function Planet({ success, error, items }) {
       <HeadLayout section={`Satélites de ${planet}`} />
 
       <Navbar />
-      <div className="sm:hidden flex flex-col justify-center items-center md:hidden h-screen w-full bg-cover bg-no-repeat bg-center bg-[url('https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814747/Dione/Satelites/Art/Sci-Europa-RTS1RFWK_ziqylc.jpg')] ">
-        <div className="px-16 py-6 bg-lavander/30 backdrop-blur-md w-fit">
+      {/* WEB BACKGROUND */}
+      <div className="sm:hidden md:hidden flex items-center justify-center h-screen w-full">
+        <AdvancedImage className=" object-cover w-full h-full" cldImg={bkg} />
+        <div className="px-16 py-6 absolute bg-lavander/30 backdrop-blur-md w-fit">
           <h1 className="text-6xl text-purple font-Dosis">
             Satélites {">"} {planet}
           </h1>
@@ -107,26 +127,39 @@ export default function Planet({ success, error, items }) {
       </div>
 
       <div className="w-full h-auto min-h-screen pb-16 sm:px-5 md:px-5 px-14 xl:py-20 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
-        <div className="lg:hidden flex flex-col justify-end xl:hidden 2xl:hidden h-90% rounded-2xl shadow-lg shadow-xiketic bg-cover bg-center bg-no-repeat w-full bg-[url('https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814747/Dione/Satelites/Art/Sci-Europa-RTS1RFWK_ziqylc.jpg')]">
-          <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
-            Satélites {">"} {planet}
+        {/* MOBILE BACKGORUND */}
+        <div className="lg:hidden flex flex-col xl:hidden 2xl:hidden  h-90% rounded-2xl shadow-lg shadow-xiketic w-full">
+          <div className=" w-full h-full">
+            <AdvancedImage
+              className=" object-cover rounded-b-2xl w-full h-full"
+              cldImg={bkg}
+            />
+            <div className="flex bottom-12 relative flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
+              Satélites {">"} {planet}
+            </div>
           </div>
         </div>
 
+        {/* ITEMS */}
         <div className="grid grid-flow-row grid-cols-3 gap-8 pt-20 sm:grid-cols-1 md:grid-cols-1 sm:gap-10 md:gap-10">
           {items.map(({ _id, name, parent, urlImg }) => (
-            <div
-              key={_id}
-              className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col justify-end w-full sm:h-30% md:h-40% h-70% bg-cover bg-no-repeat bg-center rounded-2xl bg-[url("https://${urlImg}")]`}
-            >
-              <Link href={`${parent.toLowerCase()}/${_id}`}>
-                <a>
-                  <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
-                    {name} - {parent}
+            <Link key={_id} href={`${parent.toLowerCase()}/${_id}`}>
+              <a>
+                <div
+                  className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col  w-full sm:h-30% md:h-40% h-70% rounded-2xl `}
+                >
+                  <div className="w-full h-full">
+                    <AdvancedImage
+                      className="object-cover rounded-2xl xl:rounded-none 2xl:rounded-none h-full w-full"
+                      cldImg={cld.image(`${urlImg}`)}
+                    />
+                    <div className="flex flex-col relative bottom-12 xl:bottom-16 2xl:bottom-20 justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
+                      {name} - {parent}
+                    </div>
                   </div>
-                </a>
-              </Link>
-            </div>
+                </div>
+              </a>
+            </Link>
           ))}
         </div>
       </div>

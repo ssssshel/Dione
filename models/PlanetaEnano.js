@@ -49,10 +49,12 @@ const PlanetaEnanoSchema = new mongoose.Schema({
     type: String
   },
   urlImg:{
-    type: String
+    type: String,
+    required: true,
   },
   urlImg2:{
-    type: String
+    type: String,
+    required: true
   }
 })
 

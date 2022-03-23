@@ -41,10 +41,12 @@ const AsteroideSchema = new mongoose.Schema({
   },
 
   urlImg:{
-    type: String
+    type: String,
+    required: true,
   },
   urlImg2:{
-    type: String
+    type: String,
+    required: true
   }
 
 })

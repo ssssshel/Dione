@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { AdvancedImage } from "@cloudinary/react";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
@@ -67,60 +69,44 @@ const Navbar = () => {
     toggleMobileDisplay();
   });
 
-  const planetsWithSat = [
-    {
-      name: "Tierra",
-      urlName: "tierra",
+  // CLOUDINARY
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "duuwcvkzg",
     },
-    {
-      name: "Marte",
-      urlName: "marte",
-    },
-    {
-      name: "Júpiter",
-      urlName: "jupiter",
-    },
-    {
-      name: "Saturno",
-      urlName: "saturno",
-    },
-    {
-      name: "Urano",
-      urlName: "urano",
-    },
-    {
-      name: "Neptuno",
-      urlName: "neptuno",
-    },
-    {
-      name: "Plutón",
-      urlName: "pluton",
-    },
-    {
-      name: "Eris",
-      urlName: "eris",
-    },
-    {
-      name: "Makemake",
-      urlName: "makemake",
-    },
-    {
-      name: "Haumea",
-      urlName: "haumea",
-    },
-    {
-      name: "Orcus",
-      urlName: "orcus",
-    },
-    {
-      name: "Quaoar",
-      urlName: "quaoar",
-    },
-    {
-      name: "Gonggong",
-      urlName: "gonggong",
-    },
-  ];
+  });
+
+  let img = null;
+
+  const changePath = (path) => {
+    return (img = cld.image(path));
+  };
+
+  // WEB NAVBAR IMAGE INDEX X OPTION
+  let [imageIndex, setImageIndex] = useState(0);
+
+  const exchangeNavbarImage = () => {
+    switch (imageIndex) {
+      case 0:
+        return changePath("Dione/assets/00_fonwgl.jpg");
+      case 1:
+        return changePath("Dione/assets/01_stburt.png");
+      case 2:
+        return changePath("Dione/assets/02_isiwxr.png");
+      case 3:
+        return changePath("Dione/assets/03_otmomu.jpg");
+      case 4:
+        return changePath("Dione/assets/04_ctjnfn.png");
+      case 5:
+        return changePath("Dione/assets/05_rmkqzh.jpg");
+      case 6:
+        return changePath("Dione/assets/06_q4idsy.jpg");
+
+      default:
+        break;
+    }
+  };
+  exchangeNavbarImage();
 
   return (
     <div>
@@ -253,37 +239,58 @@ const Navbar = () => {
           >
             <div className="flex flex-row justify-between px-36 items-center  w-full">
               <ul className="w-fit text-xl flex flex-col gap-4  cursor-pointer ">
-                <li className="hover:text-rhythm">
+                <li
+                  onMouseOver={() => setImageIndex((imageIndex = 0))}
+                  className="hover:text-rhythm"
+                >
                   <Link href="/sistema">
                     <a>Vista General</a>
                   </Link>
                 </li>
-                <li className="hover:text-rhythm">
+                <li
+                  onMouseOver={() => setImageIndex((imageIndex = 1))}
+                  className="hover:text-rhythm"
+                >
                   <Link href="/sistema/estrellas">
                     <a>El sol</a>
                   </Link>
                 </li>
-                <li className="hover:text-rhythm">
+                <li
+                  onMouseOver={() => setImageIndex((imageIndex = 2))}
+                  className="hover:text-rhythm"
+                >
                   <Link href="/sistema/planetas">
                     <a>Planetas</a>
                   </Link>
                 </li>
-                <li className="hover:text-rhythm">
+                <li
+                  onMouseOver={() => setImageIndex((imageIndex = 3))}
+                  className="hover:text-rhythm"
+                >
                   <Link href="/sistema/planetas-enanos">
                     <a>Planetas Enanos</a>
                   </Link>
                 </li>
-                <li className="hover:text-rhythm">
+                <li
+                  onMouseOver={() => setImageIndex((imageIndex = 4))}
+                  className="hover:text-rhythm"
+                >
                   <Link href="/sistema/satelites">
                     <a>Satélites</a>
                   </Link>
                 </li>
-                <li className="hover:text-rhythm">
+                <li
+                  onMouseOver={() => setImageIndex((imageIndex = 5))}
+                  className="hover:text-rhythm"
+                >
                   <Link href="/sistema/asteroides">
                     <a>Asteroides</a>
                   </Link>
                 </li>
-                <li className="hover:text-rhythm">
+                <li
+                  onMouseOver={() => setImageIndex((imageIndex = 6))}
+                  className="hover:text-rhythm"
+                >
                   <Link href="/sistema/cometas">
                     <a>Cometas</a>
                   </Link>
@@ -291,7 +298,12 @@ const Navbar = () => {
               </ul>
 
               {/* IMAGENES */}
-              <div className="bg-rhythm w-5/12 h-full"></div>
+              <div className="w-7/12 h-full ">
+                <AdvancedImage
+                  className="object-cover w-full h-full"
+                  cldImg={img}
+                />
+              </div>
             </div>
 
             <p
@@ -358,40 +370,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// export async function getStaticProps() {
-//   try {
-//     await connectDb();
-
-//     // PLANETAS
-//     const resPlaneta = await Planeta.find({});
-//     const itemsPlaneta = resPlaneta.map((doc) => {
-//       const item = doc.toObject();
-//       item._id = `${item._id}`;
-//       return item;
-//     });
-
-//     // PLANETAS ENANOS
-//     const resPlanetaEnano = await PlanetaEnano.find({});
-//     const itemsPlanetaEnano = resPlanetaEnano.map((doc) => {
-//       const item = doc.toObject();
-//       item._id = `${item._id}`;
-//       return item;
-//     });
-
-//     return {
-//       props: {
-//         success: true,
-//         planetas: itemsPlaneta,
-//         planetasEnanos: itemsPlanetaEnano,
-//       },
-//     };
-//   } catch (error) {
-//     return {
-//       props: {
-//         success: false,
-//         error: "error de petición",
-//       },
-//     };
-//   }
-// }
