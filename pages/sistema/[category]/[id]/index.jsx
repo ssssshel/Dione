@@ -8,6 +8,8 @@ import mongoose from "mongoose";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { getSession, useSession } from "next-auth/react";
+import { AdvancedImage } from "@cloudinary/react";
+import { Cloudinary } from "@cloudinary/url-gen";
 
 import Footer from "../../../../components/Footer";
 import HeadLayout from "../../../../components/Head";
