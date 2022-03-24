@@ -20,6 +20,13 @@ export default function Item({ success, error, item, category }) {
 
   const { data: session, status } = useSession();
 
+  // CLOUDINARY
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "duuwcvkzg",
+    },
+  });
+
   // PETICIÓN A LA API PARA ELIMINAR UN DOCUMENTO
   const deleteData = async (id) => {
     try {
@@ -70,9 +77,11 @@ export default function Item({ success, error, item, category }) {
       {category == "planetas" || category == "planetas-enanos" ? (
         <div>
           <div className="flex w-full h-auto py-20 sm:px-5 md:px-5 px-14 sm:flex-col gap-14 md:flex-col sm:gap-16 md:gap-16 lg:py-24 xl:py-24 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
-            <div
-              className={`flex flex-col justify-end md:h-80% h-80%   sm:h-80% sm:rounded-2xl md:rounded-2xl rounded-none shadow-lg shadow-xiketic bg-cover bg-center bg-no-repeat w-full bg-[url("https://${item.urlImg}")]`}
-            >
+            <div className="flex flex-col shadow-xiketic shadow-lg justify-end md:h-80% h-80% sm:h-80% w-full">
+              <AdvancedImage
+                cldImg={cld.image(item.urlImg)}
+                className=" object-cover sm:rounded-2xl md:rounded-2xl rounded-none h-full w-full"
+              />
               <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out lg:hidden xl:hidden 2xl:hidden xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
                 {item.name} - {item.category}
               </div>
@@ -118,16 +127,22 @@ export default function Item({ success, error, item, category }) {
               </ul>
             </div>
           </div>
-          <div
-            className={`w-full h-screen bg-cover bg-center bg-no-repeat bg-[url("https://${item.urlImg2}")]`}
-          ></div>
+
+          <div className="w-full h-screen">
+            <AdvancedImage
+              className="w-full h-full object-cover"
+              cldImg={cld.image(item.urlImg2)}
+            />
+          </div>
         </div>
       ) : category == "asteroides" || category == "cometas" ? (
         <div>
           <div className="flex w-full h-auto py-20 sm:px-5 md:px-5 px-14 sm:flex-col gap-14 md:flex-col sm:gap-16 md:gap-16 lg:py-24 xl:py-24 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
-            <div
-              className={`flex flex-col justify-end md:h-80% h-80%   sm:h-80% sm:rounded-2xl md:rounded-2xl rounded-none shadow-lg shadow-xiketic bg-cover bg-center bg-no-repeat w-full bg-[url("https://${item.urlImg}")]`}
-            >
+            <div className="flex flex-col shadow-xiketic shadow-lg justify-end md:h-80% h-80% sm:h-80% w-full">
+              <AdvancedImage
+                cldImg={cld.image(item.urlImg)}
+                className=" object-cover sm:rounded-2xl md:rounded-2xl rounded-none h-full w-full"
+              />
               <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out lg:hidden xl:hidden 2xl:hidden xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
                 {item.name} - {item.category}
               </div>
@@ -170,16 +185,21 @@ export default function Item({ success, error, item, category }) {
               </ul>
             </div>
           </div>
-          <div
-            className={`w-full h-screen bg-cover bg-center bg-no-repeat bg-[url("https://${item.urlImg2}")]`}
-          ></div>
+          <div className="w-full h-screen">
+            <AdvancedImage
+              className="w-full h-full object-cover"
+              cldImg={cld.image(item.urlImg2)}
+            />
+          </div>
         </div>
       ) : category == "estrellas" ? (
         <div>
           <div className="flex w-full h-auto py-20 sm:px-5 md:px-5 px-14 sm:flex-col gap-14 md:flex-col sm:gap-16 md:gap-16 lg:py-24 xl:py-24 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
-            <div
-              className={`flex flex-col justify-end md:h-80% h-80%   sm:h-80% sm:rounded-2xl md:rounded-2xl rounded-none shadow-lg shadow-xiketic bg-cover bg-center bg-no-repeat w-full bg-[url("https://${item.urlImg}")]`}
-            >
+            <div className="flex flex-col shadow-xiketic shadow-lg justify-end md:h-80% h-80% sm:h-80% w-full">
+              <AdvancedImage
+                cldImg={cld.image(item.urlImg)}
+                className=" object-cover sm:rounded-2xl md:rounded-2xl rounded-none h-full w-full"
+              />
               <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out lg:hidden xl:hidden 2xl:hidden xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
                 {item.name} - {item.category}
               </div>
@@ -218,9 +238,12 @@ export default function Item({ success, error, item, category }) {
               )}
             </div>
           </div>
-          <div
-            className={`w-full h-screen bg-cover bg-center bg-no-repeat bg-[url("https://${item.urlImg2}")]`}
-          ></div>
+          <div className="w-full h-screen">
+            <AdvancedImage
+              className="w-full h-full object-cover"
+              cldImg={cld.image(item.urlImg2)}
+            />
+          </div>
         </div>
       ) : (
         <div className="w-full h-screen"> Elemento inexistente</div>

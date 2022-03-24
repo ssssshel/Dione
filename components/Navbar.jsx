@@ -117,7 +117,11 @@ const Navbar = () => {
       >
         <div className="flex items-center content-center justify-between mt-5">
           <div className="">
-            <p className="text-3xl font-normal text-white font-Dosis">Dione</p>
+            <Link href="/">
+              <a className="text-3xl font-normal text-white font-Dosis">
+                Dione
+              </a>
+            </Link>
           </div>
           <div className="relative w-6 h-6 mt-2">
             <div
@@ -193,9 +197,11 @@ const Navbar = () => {
       {/* NAVBAR WEB */}
       <div className="fixed z-10 w-full h-auto px-14 bg-purple/30 backdrop-blur-md sm:hidden md:hidden">
         <div className="flex flex-row items-center justify-between">
-          <div>
-            <Image alt="logo" src={logoClaro} />
-          </div>
+          <Link href="/">
+            <a>
+              <Image alt="logo" src={logoClaro} />
+            </a>
+          </Link>
 
           <div>
             <ul className="flex flex-row items-center gap-16">
@@ -322,12 +328,12 @@ const Navbar = () => {
             <div className="flex items-center">
               <ul className="text-xl gap-4 flex flex-col ml-36  ">
                 <li className="hover:text-rhythm">
-                  <Link href="">
+                  <Link href="/dione">
                     <a>El Proyecto</a>
                   </Link>
                 </li>
                 <li className="hover:text-rhythm">
-                  <Link href="">
+                  <Link href="/contacto">
                     <a>Contacto</a>
                   </Link>
                 </li>

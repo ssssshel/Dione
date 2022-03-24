@@ -16,9 +16,11 @@ export default function Home() {
             <h3 className="text-2xl text-center text-lavander font-Urbanist">
               Tu experiencia espacial a un clic de distancia :)
             </h3>
-            <div className="items-center w-7/12 h-8 py-1 text-center transition duration-300 ease-in-out delay-100 hover:scale-110 hover:-translate-y-1 hover:bg-lavander/50 rounded-2xl bg-lavander/30 text-lavander">
-              Descubre más
-            </div>
+            <Link href="/sistema">
+              <a className="items-center cursor-pointer w-7/12 h-8 py-1 text-center transition duration-300 ease-in-out delay-100 hover:scale-110 hover:-translate-y-1 hover:bg-lavander/50 rounded-2xl bg-lavander/30 text-lavander">
+                Descubre más
+              </a>
+            </Link>
           </div>
         </div>
         <div className='w-full h-screen py-16 shadow-lg shadow-xiketic flex flex-col justify-center sm:hidden bg-cover bg-center bg-no-repeat bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814746/Dione/Planetas/saturn_fcvyr4.jpg")] '>
@@ -26,10 +28,12 @@ export default function Home() {
             <h1 className="relative text-5xl text-right text-lavander">
               Tu experiencia espacial, <br /> a un click de distancia :)
             </h1>
-            <div className="px-2 text-2xl text-right transition duration-300 ease-in-out cursor-pointer text-lavander hover:scale-105 hover:bg-bluebell/30 hover:backdrop-blur-md w-fit">
-              {" "}
-              || Descubre más ||
-            </div>
+            <Link href="/sistema">
+              <a className="px-2 rounded-2xl text-2xl text-right transition duration-300 ease-in-out cursor-pointer text-lavander hover:scale-105 hover:bg-bluebell/30 hover:backdrop-blur-md w-fit">
+                {" "}
+                || Descubre más ||
+              </a>
+            </Link>
           </div>
         </div>
 
