@@ -23,7 +23,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className='w-full h-screen py-16 shadow-lg shadow-xiketic flex flex-col justify-center sm:hidden bg-cover bg-center bg-no-repeat bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814746/Dione/Planetas/saturn_fcvyr4.jpg")] '>
+        <div className='w-full h-screen py-16 shadow-lg shadow-xiketic flex flex-col justify-center sm:hidden bg-cover bg-center bg-no-repeat bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1648076178/Dione/Planetas-Enanos/pluton2_k5povg.jpg")] '>
           <div className="relative flex flex-col items-end float-right gap-6 pr-32 top-14">
             <h1 className="relative text-5xl text-right text-lavander">
               Tu experiencia espacial, <br /> a un click de distancia :)
@@ -103,9 +103,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full h-screen bg-rhythm">
-          <div className='w-full h-full bg-no-repeat bg-cover bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814746/Dione/Planetas/mars-2051747_hv7m30.png")] '></div>
-        </div>
+
+        <div className='w-full sm:hidden md:hidden lg:hidden h-screen bg-no-repeat bg-cover bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814746/Dione/Planetas/mars-2051747_hv7m30.png")] '></div>
+        <div className='w-full h-screen xl:hidden 2xl:hidden bg-no-repeat bg-cover bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1648076178/Dione/Planetas-Enanos/pluton_zboyuv.jpg")] '></div>
       </div>
       <Footer />
     </div>
