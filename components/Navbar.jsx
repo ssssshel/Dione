@@ -113,7 +113,7 @@ const Navbar = () => {
       {/* NAVBAR MOBILE */}
       <div
         id="mobOptionsContainer"
-        className="fixed z-10 w-full h-20 px-5 rounded-b-xl backdrop-blur-md lg:hidden xl:hidden 2xl:hidden bg-purple/30 "
+        className="fixed z-10 w-full h-16 px-5 rounded-b-xl backdrop-blur-md lg:hidden xl:hidden 2xl:hidden bg-purple/30 "
       >
         <div className="flex items-center content-center justify-between mt-5">
           <div className="">
