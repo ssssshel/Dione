@@ -77,16 +77,18 @@ export default function Item({ success, error, item, category }) {
       {category == "planetas" || category == "planetas-enanos" ? (
         <div>
           <div className="flex w-full h-auto py-20 sm:px-5 md:px-5 px-14 sm:flex-col gap-14 md:flex-col sm:gap-16 md:gap-16 lg:py-24 xl:py-24 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
-            <div className="flex flex-col shadow-xiketic shadow-lg justify-end md:h-80% h-80% sm:h-80% w-full">
-              <AdvancedImage
-                cldImg={cld.image(item.urlImg)}
-                className=" object-cover sm:rounded-2xl md:rounded-2xl rounded-none h-full w-full"
-              />
-              <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out lg:hidden xl:hidden 2xl:hidden xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
-                {item.name} - {item.category}
+            <div className="flex flex-col shadow-xiketic rounded-2xl shadow-lg md:h-80% h-80% sm:h-80% w-full">
+              <div className="xl:hidden 2xl:hidden w-full h-full">
+                <AdvancedImage
+                  cldImg={cld.image(item.urlImg)}
+                  className=" object-cover rounded-2xl h-full w-full"
+                />
+                <div className="flex flex-col relative bottom-12 xl:bottom-16 2xl:bottom-20 justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out lg:hidden xl:hidden 2xl:hidden xl:h-16 2xl:h-20 hover:bg-lavander/30 rounded-b-2xl bg-lavander/10 backdrop-blur-md text-lavander">
+                  {item.name} - {item.category}
+                </div>
               </div>
             </div>
-            <div className="sm:w-full md:w-full w-4/6 h-fit lg:h-80% xl:h-80% 2xl:h-80% text-lavander sm:p-6 md:p-6 p-14 sm:rounded-2xl md:rounded-2xl rounded-none flex flex-col bg-lavander/25 gap-4 backdrop-blur-md ">
+            <div className="sm:w-full md:w-full w-4/6 h-fit lg:h-80% xl:h-80% 2xl:h-80% text-lavander sm:p-6 md:p-6 p-14 rounded-2xl flex flex-col bg-purple/30 gap-4 backdrop-blur-md ">
               <h1 className="text-6xl sm:hidden md:hidden font-Dosis ">
                 {item.name}
               </h1>
@@ -138,16 +140,18 @@ export default function Item({ success, error, item, category }) {
       ) : category == "asteroides" || category == "cometas" ? (
         <div>
           <div className="flex w-full h-auto py-20 sm:px-5 md:px-5 px-14 sm:flex-col gap-14 md:flex-col sm:gap-16 md:gap-16 lg:py-24 xl:py-24 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
-            <div className="flex flex-col shadow-xiketic shadow-lg justify-end md:h-80% h-80% sm:h-80% w-full">
-              <AdvancedImage
-                cldImg={cld.image(item.urlImg)}
-                className=" object-cover sm:rounded-2xl md:rounded-2xl rounded-none h-full w-full"
-              />
-              <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out lg:hidden xl:hidden 2xl:hidden xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
-                {item.name} - {item.category}
+            <div className="flex flex-col shadow-xiketic rounded-2xl shadow-lg md:h-80% h-80% sm:h-80% w-full">
+              <div className="xl:hidden 2xl:hidden w-full h-full">
+                <AdvancedImage
+                  cldImg={cld.image(item.urlImg)}
+                  className=" object-cover rounded-2xl h-full w-full"
+                />
+                <div className="flex flex-col relative bottom-12 xl:bottom-16 2xl:bottom-20 justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out lg:hidden xl:hidden 2xl:hidden xl:h-16 2xl:h-20 hover:bg-lavander/30 rounded-b-2xl bg-lavander/10 backdrop-blur-md text-lavander">
+                  {item.name} - {item.category}
+                </div>
               </div>
             </div>
-            <div className="sm:w-full md:w-full w-4/6 h-fit lg:h-80% xl:h-80% 2xl:h-80% text-lavander sm:p-6 md:p-6 p-14 sm:rounded-2xl md:rounded-2xl rounded-none flex flex-col bg-lavander/25 gap-4 backdrop-blur-md ">
+            <div className="sm:w-full md:w-full w-4/6 h-fit lg:h-80% xl:h-80% 2xl:h-80% text-lavander sm:p-6 md:p-6 p-14 rounded-2xl flex flex-col bg-purple/30 gap-4 backdrop-blur-md ">
               <h1 className="text-6xl sm:hidden md:hidden font-Dosis ">
                 {item.name}
               </h1>
@@ -195,16 +199,18 @@ export default function Item({ success, error, item, category }) {
       ) : category == "estrellas" ? (
         <div>
           <div className="flex w-full h-auto py-20 sm:px-5 md:px-5 px-14 sm:flex-col gap-14 md:flex-col sm:gap-16 md:gap-16 lg:py-24 xl:py-24 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
-            <div className="flex flex-col shadow-xiketic shadow-lg justify-end md:h-80% h-80% sm:h-80% w-full">
-              <AdvancedImage
-                cldImg={cld.image(item.urlImg)}
-                className=" object-cover sm:rounded-2xl md:rounded-2xl rounded-none h-full w-full"
-              />
-              <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out lg:hidden xl:hidden 2xl:hidden xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
-                {item.name} - {item.category}
+            <div className="flex flex-col shadow-xiketic rounded-2xl shadow-lg md:h-80% h-80% sm:h-80% w-full">
+              <div className="xl:hidden 2xl:hidden w-full h-full">
+                <AdvancedImage
+                  cldImg={cld.image(item.urlImg)}
+                  className=" object-cover rounded-2xl h-full w-full"
+                />
+                <div className="flex flex-col relative bottom-12 xl:bottom-16 2xl:bottom-20 justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out lg:hidden xl:hidden 2xl:hidden xl:h-16 2xl:h-20 hover:bg-lavander/30 rounded-b-2xl bg-lavander/10 backdrop-blur-md text-lavander">
+                  {item.name} - {item.category}
+                </div>
               </div>
             </div>
-            <div className="sm:w-full md:w-full w-4/6 h-fit lg:h-80% xl:h-80% 2xl:h-80% text-lavander sm:p-6 md:p-6 p-14 sm:rounded-2xl md:rounded-2xl rounded-none flex flex-col bg-lavander/25 gap-4 backdrop-blur-md ">
+            <div className="sm:w-full md:w-full w-4/6 h-fit lg:h-80% xl:h-80% 2xl:h-80% text-lavander sm:p-6 md:p-6 p-14 rounded-2xl flex flex-col bg-purple/30 gap-4 backdrop-blur-md ">
               <h1 className="text-6xl sm:hidden md:hidden font-Dosis ">
                 {item.name}
               </h1>

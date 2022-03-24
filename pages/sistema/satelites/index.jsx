@@ -91,14 +91,14 @@ export default function Satelites({}) {
 
       <Navbar />
       <div className="sm:hidden flex flex-col justify-center items-center md:hidden h-screen w-full bg-cover bg-no-repeat bg-center bg-[url('https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814747/Dione/Satelites/Art/Sci-Europa-RTS1RFWK_ziqylc.jpg')] ">
-        <div className="px-16 py-6 bg-lavander/30 backdrop-blur-md w-fit">
+        <div className="px-16 py-6 rounded-3xl bg-lavander/30 backdrop-blur-md w-fit">
           <h1 className="text-6xl text-purple font-Dosis">Satélites</h1>
         </div>
       </div>
 
       <div className="w-full h-auto min-h-screen pb-16 sm:px-5 md:px-5 px-14 xl:py-20 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
         <div className="lg:hidden flex flex-col justify-end xl:hidden 2xl:hidden h-90% rounded-2xl shadow-lg shadow-xiketic bg-cover bg-center bg-no-repeat w-full bg-[url('https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814747/Dione/Satelites/Art/Sci-Europa-RTS1RFWK_ziqylc.jpg')]">
-          <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
+          <div className="flex flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out hover:bg-lavander/30 rounded-b-2xl bg-lavander/10 backdrop-blur-md text-lavander">
             Satélites
           </div>
         </div>
@@ -109,14 +109,14 @@ export default function Satelites({}) {
             <Link key={name} href={`/sistema/satelites/${urlName}`}>
               <a>
                 <div
-                  className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col  w-full sm:h-30% md:h-40% h-70% rounded-2xl `}
+                  className={`flex  shadow-lg  shadow-xiketic  flex-col  w-full sm:h-30% md:h-40% h-70% rounded-2xl `}
                 >
                   <div className="w-full h-full">
                     <AdvancedImage
-                      className="object-cover rounded-2xl xl:rounded-none 2xl:rounded-none h-full w-full"
+                      className="object-cover rounded-2xl  h-full w-full"
                       cldImg={cld.image(`${imgUrl}`)}
                     />
-                    <div className="flex flex-col relative bottom-12 xl:bottom-16 2xl:bottom-20 justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
+                    <div className="flex flex-col relative bottom-12 xl:bottom-16 2xl:bottom-20 justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out  xl:h-16 2xl:h-20  hover:bg-lavander/30 rounded-b-2xl bg-lavander/10 backdrop-blur-md text-lavander">
                       Satelites de {name}
                     </div>
                   </div>

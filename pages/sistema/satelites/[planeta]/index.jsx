@@ -119,7 +119,7 @@ export default function Planet({ success, error, items }) {
       {/* WEB BACKGROUND */}
       <div className="sm:hidden md:hidden flex items-center justify-center h-screen w-full">
         <AdvancedImage className=" object-cover w-full h-full" cldImg={bkg} />
-        <div className="px-16 py-6 absolute bg-lavander/30 backdrop-blur-md w-fit">
+        <div className="px-16 py-6 absolute rounded-3xl bg-lavander/30 backdrop-blur-md w-fit">
           <h1 className="text-6xl text-purple font-Dosis">
             Satélites {">"} {planet}
           </h1>
@@ -134,7 +134,7 @@ export default function Planet({ success, error, items }) {
               className=" object-cover rounded-b-2xl w-full h-full"
               cldImg={bkg}
             />
-            <div className="flex bottom-12 relative flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
+            <div className="flex bottom-12 relative flex-col justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out hover:bg-lavander/30 rounded-b-2xl bg-lavander/10 backdrop-blur-md text-lavander">
               Satélites {">"} {planet}
             </div>
           </div>
@@ -146,14 +146,14 @@ export default function Planet({ success, error, items }) {
             <Link key={_id} href={`${parent.toLowerCase()}/${_id}`}>
               <a>
                 <div
-                  className={`flex xl:rounded-none shadow-lg  shadow-xiketic 2xl:rounded-none flex-col  w-full sm:h-30% md:h-40% h-70% rounded-2xl `}
+                  className={`flex shadow-lg  shadow-xiketic flex-col  w-full sm:h-30% md:h-40% h-70% rounded-2xl `}
                 >
                   <div className="w-full h-full">
                     <AdvancedImage
-                      className="object-cover rounded-2xl xl:rounded-none 2xl:rounded-none h-full w-full"
+                      className="object-cover rounded-2xl h-full w-full"
                       cldImg={cld.image(`${urlImg}`)}
                     />
-                    <div className="flex flex-col relative bottom-12 xl:bottom-16 2xl:bottom-20 justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out xl:rounded-none xl:h-16 2xl:h-20 2xl:rounded-none hover:bg-rhythm/40 rounded-b-2xl bg-rhythm/30 backdrop-blur-md text-lavander">
+                    <div className="flex flex-col relative bottom-12 xl:bottom-16 2xl:bottom-20 justify-center w-full h-12 text-base text-center transition duration-300 ease-in-out  xl:h-16 2xl:h-20 hover:bg-lavander/30 rounded-b-2xl bg-lavander/10 backdrop-blur-md text-lavander">
                       {name} - {parent}
                     </div>
                   </div>
