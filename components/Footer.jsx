@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="flex flex-row justify-between w-full h-full pt-24 pb-32 pl-20 pr-52 sm:py-8 md:py-8 sm:flex-col md:flex-col sm:justify-around md:justify-around sm:px-5 md:px-5">
         <Link href="/">
           <a className="w-36 sm:w-28 md:w-40">
-            <Image alt="Dione" src={logoOscuro} />
+            <Image width={120} alt="Dione" src={logoOscuro} />
           </a>
         </Link>
         <Link href="/">
