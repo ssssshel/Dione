@@ -37,11 +37,15 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full h-screen bg-xiketic"></div>
-
-        <div className="w-full h-auto px-5 py-8 xl:py-20 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
+        <div className="w-full h-auto flex flex-col px-5 py-8 xl:py-20 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
           {/* <div className="w-full h-auto px-5 py-8 xl:py-20 2xl:py-20 bg-bluebell"> */}
-          <div className="grid h-auto grid-flow-row grid-cols-1 gap-4 xl:px-10 xl:grid-cols-4 xl:grid-rows-3 2xl:px-10 2xl:grid-cols-4 2xl:grid-rows-3 auto-rows-fr ">
+          <div className="w-full h-fit mb-12 px-10 py-10 self-center rounded-2xl bg-lavander/10">
+            <p className="font-Urbanist text-center text-violet-50 text-3xl">
+              Dione es una enciclopedia virtual en la que podrás encontrar
+              información accesible sobre:
+            </p>
+          </div>
+          <div className="grid h-auto mt-5 grid-flow-row grid-cols-1 gap-4 xl:px-10 xl:grid-cols-4 xl:grid-rows-3 2xl:px-10 2xl:grid-cols-4 2xl:grid-rows-3 auto-rows-fr ">
             {/* <div
               id=""
               className='flex shadow-lg shadow-xiketic flex-col xl:col-span-1 xl:row-span-2 xl:h-full 2xl:col-span-1 2xl:row-span-2 2xl:h-full justify-end xl:rounded-none 2xl:rounded-none w-full h-45% bg-cover bg-no-repeat bg-center rounded-3xl bg-[url("https://res.cloudinary.com/duuwcvkzg/image/upload/v1642814747/Dione/Estrellas/sun_t3jgnh.png")] '

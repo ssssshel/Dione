@@ -1,3 +1,10 @@
+import cero from "../public/img/assets/00.jpg";
+import uno from "../public/img/assets/01.png";
+import dos from "../public/img/assets/02.png";
+import tres from "../public/img/assets/03.jpg";
+import cuatro from "../public/img/assets/04.png";
+import cinco from "../public/img/assets/05.jpg";
+import seis from "../public/img/assets/06.jpg";
 import menus from "../public/img/menus.png";
 import close from "../public/img/xwhite.png";
 import logoClaro from "../public/img/LogoClaro.svg";
@@ -78,29 +85,53 @@ const Navbar = () => {
 
   let img = null;
 
+  // const changePath = (path) => {
+  //   return (img = cld.image(path));
+  // };
   const changePath = (path) => {
-    return (img = cld.image(path));
+    return (img = path);
   };
 
   // WEB NAVBAR IMAGE INDEX X OPTION
   let [imageIndex, setImageIndex] = useState(0);
 
+  // const exchangeNavbarImage = () => {
+  //   switch (imageIndex) {
+  //     case 0:
+  //       return changePath("Dione/assets/00_fonwgl.jpg");
+  //     case 1:
+  //       return changePath("Dione/assets/01_stburt.png");
+  //     case 2:
+  //       return changePath("Dione/assets/02_isiwxr.png");
+  //     case 3:
+  //       return changePath("Dione/assets/03_otmomu.jpg");
+  //     case 4:
+  //       return changePath("Dione/assets/04_ctjnfn.png");
+  //     case 5:
+  //       return changePath("Dione/assets/05_rmkqzh.jpg");
+  //     case 6:
+  //       return changePath("Dione/assets/06_q4idsy.jpg");
+
+  //     default:
+  //       break;
+  //   }
+  // };
   const exchangeNavbarImage = () => {
     switch (imageIndex) {
       case 0:
-        return changePath("Dione/assets/00_fonwgl.jpg");
+        return changePath(cero);
       case 1:
-        return changePath("Dione/assets/01_stburt.png");
+        return changePath(uno);
       case 2:
-        return changePath("Dione/assets/02_isiwxr.png");
+        return changePath(dos);
       case 3:
-        return changePath("Dione/assets/03_otmomu.jpg");
+        return changePath(tres);
       case 4:
-        return changePath("Dione/assets/04_ctjnfn.png");
+        return changePath(cuatro);
       case 5:
-        return changePath("Dione/assets/05_rmkqzh.jpg");
+        return changePath(cinco);
       case 6:
-        return changePath("Dione/assets/06_q4idsy.jpg");
+        return changePath(seis);
 
       default:
         break;
@@ -304,10 +335,16 @@ const Navbar = () => {
               </ul>
 
               {/* IMAGENES */}
-              <div className="w-7/12 h-full ">
-                <AdvancedImage
-                  className="object-cover w-full h-full"
+              <div className="w-7/12 self-center h-full flex flex-col rounded-2xl ">
+                {/* <AdvancedImage
+                  className="object-cover rounded-2xl w-full h-full"
                   cldImg={img}
+                /> */}
+                <Image
+                  className="object-cover rounded-2xl w-full h-full"
+                  layout="responsive"
+                  alt=""
+                  src={img}
                 />
               </div>
             </div>
@@ -332,11 +369,11 @@ const Navbar = () => {
                     <a>El Proyecto</a>
                   </Link>
                 </li>
-                <li className="hover:text-rhythm">
+                {/* <li className="hover:text-rhythm">
                   <Link href="/contacto">
                     <a>Contacto</a>
                   </Link>
-                </li>
+                </li> */}
                 {!session ? (
                   <li
                     onClick={() => signIn("github", { callbackUrl: "/" })}

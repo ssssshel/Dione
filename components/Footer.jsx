@@ -77,20 +77,23 @@ const Footer = () => {
                 <a className="hover:text-rhythm">El proyecto</a>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/contacto">
                 <a className="hover:text-rhythm">Contacto</a>
               </Link>
-            </li>
+            </li> */}
             <ul className="flex sm:flex-col md:flex-col sm:gap-1 md:gap-1 flex-row gap-5">
               <li>
-                <Link href="/">
-                  <a className="text-3xl sm:text-base md:text-xl hover:text-rhythm">
+                <Link href="https://github.com/ssssshel/Dione/tree/main">
+                  <a
+                    target={"_blank"}
+                    className="text-3xl sm:text-base md:text-xl hover:text-rhythm"
+                  >
                     <FontAwesomeIcon className="" icon={faGithub} />
                   </a>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/">
                   <a className="text-3xl sm:text-base md:text-xl hover:text-rhythm">
                     <FontAwesomeIcon icon={faTwitter} />
@@ -103,13 +106,16 @@ const Footer = () => {
                     <FontAwesomeIcon icon={faInstagram} />
                   </a>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </ul>
         </div>
       </div>
       <div className="w-full h-16 pt-6 text-sm text-right sm:text-xs md:text-xs px-14 sm:px-6 md:px-6 sm:h-14 md:h-14 bg-purple text-lavander">
-        <FontAwesomeIcon icon={faCode} /> with ❤️ by ssssshel
+        <FontAwesomeIcon icon={faCode} /> with ❤️ by{" "}
+        <Link href="https://github.com/ssssshel">
+          <a target={"_blank"}>ssssshel</a>
+        </Link>
       </div>
     </div>
   );
