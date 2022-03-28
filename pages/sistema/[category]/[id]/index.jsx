@@ -78,7 +78,7 @@ export default function Item({ success, error, item, category }) {
         <div>
           <div className="flex w-full h-auto py-20 sm:px-5 md:px-5 px-14 sm:flex-col gap-14 md:flex-col sm:gap-16 md:gap-16 lg:py-24 xl:py-24 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
             <div className="flex flex-col shadow-xiketic rounded-2xl shadow-lg md:h-80% h-80% sm:h-80% w-full">
-              <div className="xl:hidden 2xl:hidden w-full h-full">
+              <div className=" w-full h-full">
                 <AdvancedImage
                   cldImg={cld.image(item.urlImg)}
                   className=" object-cover rounded-2xl h-full w-full"
@@ -141,7 +141,7 @@ export default function Item({ success, error, item, category }) {
         <div>
           <div className="flex w-full h-auto py-20 sm:px-5 md:px-5 px-14 sm:flex-col gap-14 md:flex-col sm:gap-16 md:gap-16 lg:py-24 xl:py-24 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
             <div className="flex flex-col shadow-xiketic rounded-2xl shadow-lg md:h-80% h-80% sm:h-80% w-full">
-              <div className="xl:hidden 2xl:hidden w-full h-full">
+              <div className="w-full h-full">
                 <AdvancedImage
                   cldImg={cld.image(item.urlImg)}
                   className=" object-cover rounded-2xl h-full w-full"
@@ -200,7 +200,7 @@ export default function Item({ success, error, item, category }) {
         <div>
           <div className="flex w-full h-auto py-20 sm:px-5 md:px-5 px-14 sm:flex-col gap-14 md:flex-col sm:gap-16 md:gap-16 lg:py-24 xl:py-24 2xl:py-20 bg-gradient-to-b from-purple to-rhythm">
             <div className="flex flex-col shadow-xiketic rounded-2xl shadow-lg md:h-80% h-80% sm:h-80% w-full">
-              <div className="xl:hidden 2xl:hidden w-full h-full">
+              <div className="w-full h-full">
                 <AdvancedImage
                   cldImg={cld.image(item.urlImg)}
                   className=" object-cover rounded-2xl h-full w-full"
