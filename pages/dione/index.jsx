@@ -7,6 +7,7 @@ const dione = () => {
     <div>
       <HeadLayout section={"Acerca de"} />
       <Navbar />
+      <div>Dione</div>
       <Footer />
     </div>
   );
