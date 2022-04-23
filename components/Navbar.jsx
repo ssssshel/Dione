@@ -229,8 +229,8 @@ const Navbar = () => {
       <div className="fixed z-10 w-full h-auto px-14 bg-purple/30 backdrop-blur-md sm:hidden md:hidden">
         <div className="flex flex-row items-center justify-between">
           <Link href="/">
-            <a>
-              <Image alt="logo" src={logoClaro} />
+            <a className="text-4xl font-normal text-white font-Dosis">
+              Dione
             </a>
           </Link>
 
@@ -274,8 +274,8 @@ const Navbar = () => {
             id="op1"
             className="flex-row hidden justify-between h-50% 2xl:h-60% w-full font-semibold text-lavander"
           >
-            <div className="flex flex-row justify-between px-36 items-center  w-full">
-              <ul className="w-fit text-xl flex flex-col gap-4  cursor-pointer ">
+            <div className="flex flex-row items-center justify-between w-full px-36">
+              <ul className="flex flex-col gap-4 text-xl cursor-pointer w-fit ">
                 <li
                   onMouseOver={() => setImageIndex((imageIndex = 0))}
                   className="hover:text-rhythm"
@@ -335,13 +335,13 @@ const Navbar = () => {
               </ul>
 
               {/* IMAGENES */}
-              <div className="w-7/12 self-center h-full flex flex-col rounded-2xl ">
+              <div className="flex flex-col self-center w-7/12 h-full rounded-2xl ">
                 {/* <AdvancedImage
-                  className="object-cover rounded-2xl w-full h-full"
+                  className="object-cover w-full h-full rounded-2xl"
                   cldImg={img}
                 /> */}
                 <Image
-                  className="object-cover rounded-2xl w-full h-full"
+                  className="object-cover w-full h-full rounded-2xl"
                   layout="responsive"
                   alt=""
                   src={img}
@@ -350,7 +350,7 @@ const Navbar = () => {
             </div>
 
             <p
-              className="text-3xl  cursor-pointer  hover:text-bluebell absolute right-0 top-0"
+              className="absolute top-0 right-0 text-3xl cursor-pointer hover:text-bluebell"
               onClick={() => setOptionsTog((optionsTog = null))}
             >
               x
@@ -363,7 +363,7 @@ const Navbar = () => {
             className="flex-row justify-between hidden h-50% 2xl:h-60% float-right w-full font-semibold cursor-pointer text-lavander"
           >
             <div className="flex items-center">
-              <ul className="text-xl gap-4 flex flex-col ml-36  ">
+              <ul className="flex flex-col gap-4 text-xl ml-36 ">
                 <li className="hover:text-rhythm">
                   <Link href="/dione">
                     <a>El Proyecto</a>
@@ -400,7 +400,7 @@ const Navbar = () => {
             </div>
 
             <p
-              className="text-3xl hover:text-bluebell absolute right-0"
+              className="absolute right-0 text-3xl hover:text-bluebell"
               onClick={() => setOptionsTog((optionsTog = null))}
             >
               x

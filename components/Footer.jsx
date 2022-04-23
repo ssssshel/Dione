@@ -13,23 +13,23 @@ import { faCode } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
   return (
-    <div className="sm:sticky md:sticky z-20 flex flex-col justify-between w-full h-fit sm:h-screen md:h-screen bg-lavander">
+    <div className="z-20 flex flex-col justify-between w-full sm:sticky md:sticky h-fit sm:h-screen md:h-screen bg-lavander">
       <div className="flex flex-row justify-between w-full h-full pt-24 pb-32 pl-20 pr-52 sm:py-8 md:py-8 sm:flex-col md:flex-col sm:justify-around md:justify-around sm:px-5 md:px-5">
         <Link href="/">
-          <a className="w-36 sm:w-28 md:w-40">
-            <Image width={120} alt="Dione" src={logoOscuro} />
+          <a className="text-4xl font-normal text-xiketic font-Dosis">
+            Dione
           </a>
         </Link>
         <Link href="/">
-          <a className="sm:text-left md:text-left text-lg text-right">Inicio</a>
+          <a className="mt-3 text-lg text-right sm:text-left md:text-left">Inicio</a>
         </Link>
-        <div className="flex flex-col sm:text-left md:text-left gap-10 sm:gap-3 md:gap-3">
+        <div className="flex flex-col gap-10 mt-3 sm:text-left md:text-left sm:gap-3 md:gap-3">
           <Link href="/sistema">
             <a className="text-lg text-right sm:text-left md:text-left">
               Sistema
             </a>
           </Link>
-          <ul className="flex sm:text-left md:text-left flex-col gap-4 text-base text-right sm:text-sm md:text-sm sm:gap-1 md:gap-1">
+          <ul className="flex flex-col gap-4 text-base text-right sm:text-left md:text-left sm:text-sm md:text-sm sm:gap-1 md:gap-1">
             <li>
               <Link href="/sistema">
                 <a className="hover:text-rhythm">Vista general</a>
@@ -67,11 +67,11 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col gap-10 sm:gap-3 md:gap-3">
+        <div className="flex flex-col gap-10 mt-3 sm:gap-3 md:gap-3">
           <p className="text-lg text-right sm:text-left md:text-left">
             Acerca de
           </p>
-          <ul className="flex flex-col gap-4 sm:text-left md:text-left text-base text-right sm:text-sm md:text-sm sm:gap-1 md:gap-1">
+          <ul className="flex flex-col gap-4 text-base text-right sm:text-left md:text-left sm:text-sm md:text-sm sm:gap-1 md:gap-1">
             <li>
               <Link href="/dione">
                 <a className="hover:text-rhythm">El proyecto</a>
@@ -82,7 +82,7 @@ const Footer = () => {
                 <a className="hover:text-rhythm">Contacto</a>
               </Link>
             </li> */}
-            <ul className="flex sm:flex-col md:flex-col sm:gap-1 md:gap-1 flex-row gap-5">
+            <ul className="flex flex-row gap-5 sm:flex-col md:flex-col sm:gap-1 md:gap-1">
               <li>
                 <Link href="https://github.com/ssssshel/Dione/tree/main">
                   <a
